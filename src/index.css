@@ -1,5 +1,6 @@
 :root{
-  --color-primary:#605BFF
+  --color-primary:#605BFF;
+  --color-secondary:#030229;
 }
 
 *,*::after,*::before{
@@ -7,4 +8,6 @@
   margin: 0;
   padding: 0;
 }
-
+button{
+  cursor: pointer;
+}

@@ -1,8 +1,8 @@
 import "./button.css"
 
-const Button = () => {
+const Button = ({buttonText}:{buttonText:string}) => {
   return (
-    <button className="button__category--orange button--active">Inicia Sesion</button>
+    <button className="btn-submit">{buttonText}</button>
   )
 }
 

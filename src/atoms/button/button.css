@@ -8,6 +8,7 @@
     border: transparent;
   }
   .btn-submit:hover{
-      background-color: #e77941;
+      background-color:  var(--color-primary);
+      opacity: 0.9
   }
   
