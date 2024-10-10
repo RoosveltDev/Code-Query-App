@@ -1,6 +1,6 @@
 /* Button Submit */
-.btn-submit {
-    padding: 14px 0px;
+.btn-submit{
+    padding: 14px 8px;
     background-color: var(--color-primary);
     border-radius: 4px;
     cursor: pointer;

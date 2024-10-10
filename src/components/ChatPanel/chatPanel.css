@@ -1,0 +1,32 @@
+.chat-panel-container{
+    height: calc(100vh - 40px);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 0 30px;
+}
+.chat-panel-container__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.panel-chat-header__actions{
+    display: flex;
+    gap: 15px;
+}
+.actions-chat-panel-container__element{
+    background-color: #F7F7F8;
+    border-radius: 50%;
+    width: 36px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ @media  (max-width: 850px) {
+    .header-panel-element--media{
+        display: none;
+    }
+   
+ }  
