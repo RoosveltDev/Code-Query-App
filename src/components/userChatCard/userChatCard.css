@@ -26,3 +26,9 @@
     opacity: 0.4;
     
 }
+@media (min-width: 450px) {
+    .container-main-chat__panel{
+        width: 70%;
+    }
+   
+ }  
