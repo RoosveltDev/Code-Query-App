@@ -1,3 +1,5 @@
+import { MessageType } from "./fetchedMessage.type"
+
 export type MessageChatType={
-    isMine:boolean;
+    chatMessage:MessageType
 }

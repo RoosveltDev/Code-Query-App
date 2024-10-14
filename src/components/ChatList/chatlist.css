@@ -5,6 +5,7 @@
     max-width: 368px;
     border-radius: 10px;
     height: 100%;
+    
 }
 .user-chat-list-container__header{
     display: flex;

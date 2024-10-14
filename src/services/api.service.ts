@@ -1,5 +1,5 @@
 import CredentialError from "../exceptions/credential.exception";
-
+import { config } from "../config";
 const makeRequest = async (
   signal: AbortSignal,
   context: string,
@@ -8,7 +8,8 @@ const makeRequest = async (
   hasCredentials: boolean,
   bodyFormat: "row" | "form-data" = "row"
 ) => {
-  const url = 'http://127.0.0.1:8000';
+  
+  const url = config.SERVER_URL;
   const myHeaders = new Headers()
 
   if (bodyFormat === 'row') {
@@ -20,7 +21,7 @@ const makeRequest = async (
     const items = localStorage.getItem('user')
     if (!items) throw new CredentialError('')
     const user = JSON.parse(items)
-    const token = user.access_token
+    const token = user.accessToken
     myHeaders.append('Authorization', `Bearer ${token}`)
   }
 

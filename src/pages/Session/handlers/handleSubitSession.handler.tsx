@@ -16,7 +16,7 @@ export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,control
         return
     }
     const userObject:UserLogin = {email,password}
-    const validatedSchema = validateInputs<User,UserLogin>( userObject,userSchema)
+    const validatedSchema = validateInputs<Omit<User, 'id'>,UserLogin>( userObject,userSchema)
     if(validatedSchema) {
         const signal = controlSignal.signal
         const {results} = await makeRequest(signal,"auth/signIn","POST",userObject,false)
@@ -46,8 +46,8 @@ export const handleSubmitRegister=async (e:React.FormEvent<HTMLFormElement>,cont
     }
     const [name,lastName] = fullNameArray
     
-    const userObject:User = {email,password,name,last_name:lastName,rol_id:rolId}
-    const validatedSchema = validateInputs<User,UserLogin>( userObject,userSchema)
+    const userObject:Omit<User, 'id'> = {email,password,name,last_name:lastName,rol_id:rolId}
+    const validatedSchema = validateInputs<Omit<User, 'id'>,UserLogin>( userObject,userSchema)
     if(validatedSchema) {
         const signal = controlSignal.signal
         await makeRequest(signal,"auth/signUp","POST",userObject,false)
@@ -59,12 +59,12 @@ export const handleSubmitRegister=async (e:React.FormEvent<HTMLFormElement>,cont
 }
 
 export const handleLoginCurrying=(storeUser:(dataUser: UserLogged) => void)=>{
-    return (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate:NavigateFunction)=>{
-        return handleSubmitLogin(e,controlSignal,navigate,storeUser)
+    return (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate?:NavigateFunction)=>{
+        return handleSubmitLogin(e,controlSignal,navigate!,storeUser)
     }
 }
 export const handleRegisterCurrying=(rol_id:number)=>{
-    return (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate:NavigateFunction)=>{
-        return handleSubmitRegister(e,controlSignal,navigate,rol_id)
+    return (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate?:NavigateFunction)=>{
+        return handleSubmitRegister(e,controlSignal,navigate!,rol_id)
     }
 }

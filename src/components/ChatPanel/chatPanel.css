@@ -25,6 +25,10 @@
 }
 .chat-panel-container__messages{
     height: 75%;
+    display: flex;
+    padding: 30px;
+    flex-direction: column;
+    gap: 10px;
 }
 .chat-panel-container__prompt{
     height: calc(25% - 100px);
@@ -74,6 +78,11 @@
     width: 20px;
     aspect-ratio: 1;
     cursor: pointer;
+}
+.prompt-send-container__button{
+    border: none;
+    background-color: transparent;
+    padding: 0;
 }
  @media  (max-width: 850px) {
     .header-panel-element--media{

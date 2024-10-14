@@ -1,0 +1,26 @@
+.popUp-overlay-main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.popUp-overlay-main__popup{
+    padding: 30px;
+    border: 1px solid;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.popUp-container__actions{
+    display: flex;
+    justify-content: space-between;
+}
+.actions-popUp__header{
+    margin-bottom: 20px;
+}
+.close-popUp-actions{
+    cursor: pointer;
+}

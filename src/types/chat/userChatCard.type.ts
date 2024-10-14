@@ -1,6 +1,8 @@
-export type UserChatCardType={
-    text:string;
-    name:string;
-    isChatStatus?:boolean;
-    handleClickUserCard?:()=>void | null;
+import { fetchedChatList } from "./fetchedChatList.type";
+
+export type UserChatCardType = {
+    isOnline?:boolean
+    isChatStatus?: boolean;
+    handleClickUserCard?: (e:React.MouseEvent<HTMLDivElement>) => void;
+    elementCard: fetchedChatList
 }
