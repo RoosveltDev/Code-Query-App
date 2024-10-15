@@ -1,18 +1,18 @@
 .popUp-overlay-main{
-    width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
+  
 }
 .popUp-overlay-main__popup{
     padding: 30px;
     border: 1px solid;
     background-color: #fff;
     border-radius: 10px;
+    position: absolute;
+    z-index: 1;
+    top: 35%;
+    left: 35%;
 }
 .popUp-container__actions{
     display: flex;
@@ -24,3 +24,8 @@
 .close-popUp-actions{
     cursor: pointer;
 }
+@media (max-width: 800px) {
+    .popUp-overlay-main__popup{
+        left: 0%;
+    }
+ }

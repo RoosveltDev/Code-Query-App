@@ -5,8 +5,9 @@ export type User ={
     email:string;
     password:string;
     rol_id:number
+    avatar?:string
 }
-export type UserLogin = Omit<User, 'rol_id'| 'last_name' | 'name' | 'id'>;
+export type UserLogin = Omit<User, 'rol_id'| 'last_name' | 'name' | 'id'| 'avatar'>;
 export type UserLogged = Omit<User, 'password'>;
 
 export type UserContextType = {

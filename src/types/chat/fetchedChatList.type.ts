@@ -6,5 +6,6 @@ export type fetchedChatList={
         avatar?:string;
         name:string;
         last_name:string;
+        last_message?:string
     }
 }

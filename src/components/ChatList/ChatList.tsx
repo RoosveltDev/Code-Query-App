@@ -30,7 +30,7 @@ const ChatList = ({isMobile,setIsClicked,setIsMobile,data,setData,setIndexChatCl
             </div>
             {
                 data && data.length > 0 && data!.map((element)=>{
-                    return <UserChatCard key={element.user.id} elementCard={element} handleClickUserCard={isMobile ? handleClickChatMobileCurrying(setIsClicked,setIsMobile,setIndexChatClicked) : handleClickChatCurrying(setIndexChatClicked)}  isChatStatus={true}></UserChatCard>
+                    return <UserChatCard text={element.user.last_message!} key={element.user.id} elementCard={element} handleClickUserCard={isMobile ? handleClickChatMobileCurrying(setIsClicked,setIsMobile,setIndexChatClicked) : handleClickChatCurrying(setIndexChatClicked)}  isChatStatus={true}></UserChatCard>
                 })
             }
             

@@ -23,7 +23,7 @@ export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,control
         /* TODO: HANDLE RESPONSE */
         results.email = email
         storeUser(results)
-        navigate('/')
+        navigate('/dashboard')
 
     }
     

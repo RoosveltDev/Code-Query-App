@@ -4,6 +4,7 @@ import Recover from "../pages/Recover/Recover"
 import Confirm from "../pages/Confirm/Confirm"
 import Chat from "../pages/Chat/Chat"
 import Layout from "../layout/Layout"
+import Dashboard from "../pages/Dashboard/Dashboard"
 function Router(){
     
     return(
@@ -11,6 +12,7 @@ function Router(){
         
           <Layout>
             <Routes>
+              <Route path="/dashboard" element={<Dashboard/>}></Route>
             <Route path="/login" element={<Session/>}></Route>
             <Route path="/register" element={<Session/>}></Route>
             <Route path="/recover" element={<Recover/>}></Route>
