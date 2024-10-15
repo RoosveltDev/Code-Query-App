@@ -1,0 +1,14 @@
+/* Button Submit */
+.btn-submit{
+    padding: 14px 8px;
+    background-color: var(--color-primary);
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    border: transparent;
+  }
+  .btn-submit:hover{
+      background-color:  var(--color-primary);
+      opacity: 0.9
+  }
+  
