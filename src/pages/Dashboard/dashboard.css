@@ -32,6 +32,7 @@
     margin-top: 30px;
     background-color: #fff;
     padding: 28px;
+    border-radius: 10px;
     height: 35%;
     
 }
@@ -39,11 +40,37 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 30px;
+}
+.dashboard-courses-container__h2{
+    font-size: 22px;
 }
 .dashboard-courses-link{
-    text-decoration: none;
-    font-size: 12px;
+    background-color: transparent;
+    font-size: 13px;
     text-align: center;
+    border: none;
+    color: #605BFF;
+}
+.dashboard-courses-container__list{
+    width: 100%;
+
+}
+.courses-list-dashboard__header{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-size: 14px;
+    justify-content: space-between;
+    height: 30px;
+}
+.header-courses-list-dashboard__h3{
+    text-align: center;
+    width: calc((100% - 116px)/4);
+}
+.courses-list-dashboard__courses{
+    width: 100%;
+    
 }
 @media (min-width: 750px) {
     .dashboard-main-container__charts{

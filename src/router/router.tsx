@@ -18,6 +18,7 @@ function Router(){
             <Route path="/recover" element={<Recover/>}></Route>
             <Route path="/confirm" element={<Confirm/>}></Route>
             <Route path="/chat" element={<Chat/>}></Route>
+            <Route path="/" element={<Session/>}></Route>
             </Routes>
           </Layout>
           

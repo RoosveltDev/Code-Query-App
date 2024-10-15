@@ -6,8 +6,6 @@ export const dataChartReduce = (results: fetchedQuestions[]) => {
     acc[date] = (acc[date] || 0) + 1
     return acc
   }, {})
-
-  // Convert keys (dates) to actual Date objects, sort them, and map back to labels and dataPoints
   const sortedEntries = Object.entries(reduced).sort(([a], [b]) => {
     return new Date(a).getTime() - new Date(b).getTime()
   })

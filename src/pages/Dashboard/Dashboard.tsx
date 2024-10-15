@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+
 import Button from "../../atoms/button/Button"
 import './dashboard.css'
 import { Line } from 'react-chartjs-2';
@@ -11,12 +11,14 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 import { ChartDatasetType } from "../../types/dashboard/dataDasboard.type";
 import { dataChartReduce } from "../../utils/dataChartReduce";
 import { handleSelectDashboard } from "./handlers/handleSelectDashboard.handler";
+import ClassroomCard from "../../components/ClassroomCard/ClassroomCard";
+import { handleClickMore } from "./handlers/handleClickMore.handler";
 const Dashboard = () => {
     const controllerRef = useRef<AbortController | null>(null);
     const [dataChart, setDataChart] = useState<ChartDatasetType>({ labels: [], datasets: [] });
     const [dataChartInteractions, setDataChartInteractions] = useState<ChartDatasetType>({ labels: [], datasets: [] });
     const [indexSelected,setIndexSelected] = useState<number>(0)
-    const [data] = useFetch<FetchedClassroomsType[]>({
+    const [data,setData] = useFetch<FetchedClassroomsType[]>({
         fetchOptions: {
             context: "classrooms",
             method: "GET",
@@ -95,8 +97,21 @@ const Dashboard = () => {
             </div>
             <div className="dashboard-main-container__courses dashboard-courses-container">
                 <div className="dashboard-courses-container__header">
-                    <h2 className="dashboard-courses-container__h2">Classrooms</h2>
-                    <Link className="dashboard-courses-link" to={'/courses'}>See more</Link>
+                    <h2 className="dashboard-courses-container__h2">Top Classrooms</h2>
+                    <button onClick={()=>handleClickMore(controllerRef,setData)} className="dashboard-courses-link">See more</button>
+                </div>
+                <div className="dashboard-courses-container__list courses-list-dashboard">
+                    <div className="courses-list-dashboard__header header-courses-list-dashboard">
+                        <h3 className="header-courses-list-dashboard__h3 header-courses-list-dashboard__start">S/N</h3>
+                        <h3 className="header-courses-list-dashboard__h3">Name</h3>
+                        <h3 className="header-courses-list-dashboard__h3">Desciption</h3>
+                        <h3 className="header-courses-list-dashboard__h3"></h3>
+                    </div>
+                    <div className="courses-list-dashboard__courses">
+                        {data && data.map((element,index) =>{
+                            return <ClassroomCard classroom = {element} index= {index}></ClassroomCard>
+                        })}
+                    </div>
                 </div>
             </div>
             
