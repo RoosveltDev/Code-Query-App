@@ -7,6 +7,8 @@ import Layout from "../layout/Layout"
 import Dashboard from "../pages/Dashboard/Dashboard"
 import ClassRoomStudents from "../pages/ClassRoomStudents/ClassRoomStudents"
 import ConfirmStudent from "../pages/ConfirmStudent/ConfirmStudent"
+import Private from "../guard/Private"
+import Public from "../guard/Public"
 function Router(){
     
     return(
@@ -14,15 +16,22 @@ function Router(){
         
           <Layout>
             <Routes>
-              <Route path="/dashboard" element={<Dashboard/>}></Route>
-            <Route path="/login" element={<Session/>}></Route>
-            <Route path="/register" element={<Session/>}></Route>
-            <Route path="/recover" element={<Recover/>}></Route>
-            <Route path="/confirm" element={<Confirm/>}></Route>
-            <Route path="/chat" element={<Chat/>}></Route>
-            <Route path="/" element={<Session/>}></Route>
-            <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
-            <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
+            <Route element={<Private></Private>}>
+                <Route path="/dashboard" element={<Dashboard/>}></Route>
+                <Route path="/chat" element={<Chat/>}></Route>
+                <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
+                <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
+              </Route>
+              <Route element={<Public></Public>}>
+                <Route path="/login" element={<Session/>}></Route>
+                <Route path="/register" element={<Session/>}></Route>
+                <Route path="/recover" element={<Recover/>}></Route>
+                <Route path="/confirm" element={<Confirm/>}></Route>
+                
+                <Route path="/" element={<Session/>}></Route>
+              </Route>
+             
+              
             </Routes>
           </Layout>
           

@@ -101,7 +101,7 @@ const Dashboard = () => {
             <div className="dashboard-main-container__courses dashboard-courses-container">
                 <div className="dashboard-courses-container__header">
                     <h2 className="dashboard-courses-container__h2">Top Classrooms</h2>
-                    <button onClick={()=>handleClickMore(controllerRef,setData)} className="dashboard-courses-link">See more</button>
+                    <button onClick={()=>handleClickMore(controllerRef,setData,data!.length)} className="dashboard-courses-link">See more</button>
                 </div>
                 <div className="dashboard-courses-container__list courses-list-dashboard">
                     <div className="courses-list-dashboard__header header-courses-list-dashboard">
