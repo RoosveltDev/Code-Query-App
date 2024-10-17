@@ -5,6 +5,8 @@ import Confirm from "../pages/Confirm/Confirm"
 import Chat from "../pages/Chat/Chat"
 import Layout from "../layout/Layout"
 import Dashboard from "../pages/Dashboard/Dashboard"
+import ClassRoomStudents from "../pages/ClassRoomStudents/ClassRoomStudents"
+import ConfirmStudent from "../pages/ConfirmStudent/ConfirmStudent"
 function Router(){
     
     return(
@@ -19,6 +21,8 @@ function Router(){
             <Route path="/confirm" element={<Confirm/>}></Route>
             <Route path="/chat" element={<Chat/>}></Route>
             <Route path="/" element={<Session/>}></Route>
+            <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
+            <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
             </Routes>
           </Layout>
           

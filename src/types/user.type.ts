@@ -9,7 +9,19 @@ export type User ={
 }
 export type UserLogin = Omit<User, 'rol_id'| 'last_name' | 'name' | 'id'| 'avatar'>;
 export type UserLogged = Omit<User, 'password'>;
-
+export type FetchedStudent = {
+    user: Student;
+    status:string;
+}
+export type Student = {
+    id:string
+    name: string;
+    last_name:string;
+    email:string;
+    avatar?:string;
+    created_at:string
+    
+}
 export type UserContextType = {
     storeUser: (dataUser:UserLogged)=>void;
     removeUser:()=>void;

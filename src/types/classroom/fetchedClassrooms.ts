@@ -1,5 +1,5 @@
 export type FetchedClassroomsType = {
-    id:number;
+    id:string;
     classroom_name:string;
     description?:string;
 }

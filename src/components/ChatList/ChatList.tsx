@@ -35,7 +35,7 @@ const ChatList = ({isMobile,setIsClicked,setIsMobile,data,setData,setIndexChatCl
             }
             
         </div>
-        {isCreatedChat && <PopUp submit={handleSubmitCreateChatCurrying(setData)} setIsCreatedChat={setIsCreatedChat} inputs={[{type:"email",label:"Email"}]}></PopUp>}
+        {isCreatedChat && <PopUp text="Create Chat" submit={handleSubmitCreateChatCurrying(setData)} setIsCreatedChat={setIsCreatedChat} inputs={[{type:"email",label:"Email"}]}></PopUp>}
     </div>
 
   )
