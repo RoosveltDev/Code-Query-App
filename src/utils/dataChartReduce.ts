@@ -1,6 +1,6 @@
-import { fetchedQuestions } from "../types/question/fetchedQuestions.type"
 
-export const dataChartReduce = (results: fetchedQuestions[]) => {
+
+export const dataChartReduce = <T extends {created_at:string}>(results: T[]) => {
   const reduced = results.reduce((acc: Record<string, number>, current) => {
     const date = new Date(current.created_at).toLocaleDateString()
     acc[date] = (acc[date] || 0) + 1

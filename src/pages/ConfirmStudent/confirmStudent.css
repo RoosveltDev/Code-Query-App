@@ -1,0 +1,79 @@
+.confirm-student-main-container{
+    height: 100vh;
+    background-color: #FAFAFB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.confirm-student-main-container__invitation{
+    padding: 30px;
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    gap: 10px;
+}
+.invitation-student-container__header{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.header-invitation-container__image{
+    width: 50px;
+    aspect-ratio: 1;
+}
+.header-invitation-container__plus{
+    width: 20px;
+    height: 20px;
+    filter: invert(100%);
+}
+.invitation-student-container__h2{
+    font-weight: 600;
+    font-size: 18px;
+}
+.invitation-student-container__name{
+    color: #0068DD;
+}
+.invitation-student-container__actions{
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.actions-invitation-container__button{
+    padding: 10px;
+    background-color: #FAFAFB;
+}
+.invitation-button-confirm--accept{
+    background-color: var(--color-primary);
+    color: #fff;
+}
+.invitation-student-container__disclaimer{
+   align-self: flex-start;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+.disclaimer-invitation-container__header{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.disclaimer-invitation-container__icon{
+    width: 8px;
+    aspect-ratio: 1;
+}
+.header-disclaimer-confirm-container__h3{
+    font-size: 14px;
+}
+.list-confirm-container__element{
+    font-size: 12px;
+    margin-left: 15px;
+}

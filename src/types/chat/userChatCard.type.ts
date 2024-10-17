@@ -5,5 +5,5 @@ export type UserChatCardType = {
     isChatStatus?: boolean;
     handleClickUserCard?: (e:React.MouseEvent<HTMLDivElement>) => void;
     elementCard: fetchedChatList
-    text:string
+    text?:string
 }

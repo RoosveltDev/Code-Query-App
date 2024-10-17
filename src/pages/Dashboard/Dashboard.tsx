@@ -11,8 +11,11 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 import { ChartDatasetType } from "../../types/dashboard/dataDasboard.type";
 import { dataChartReduce } from "../../utils/dataChartReduce";
 import { handleSelectDashboard } from "./handlers/handleSelectDashboard.handler";
-import ClassroomCard from "../../components/ClassroomCard/ClassroomCard";
+/* import ClassroomCard from "../../components/ClassroomCard/ClassroomCard"; */
+import position from '../../assets/Position.svg'
 import { handleClickMore } from "./handlers/handleClickMore.handler";
+import CardList from "../../components/CardList/CardList";
+import { Link } from "react-router-dom";
 const Dashboard = () => {
     const controllerRef = useRef<AbortController | null>(null);
     const [dataChart, setDataChart] = useState<ChartDatasetType>({ labels: [], datasets: [] });
@@ -28,7 +31,7 @@ const Dashboard = () => {
         }
     });
 
-    async function getQuestionByClassroom(id: number) {
+    async function getQuestionByClassroom(id: string) {
         controllerRef.current = new AbortController();
         const signal = controllerRef.current.signal;
         const response = await makeRequest(signal, `questions/classroom/${id}`, 'GET', {}, true)
@@ -45,7 +48,7 @@ const Dashboard = () => {
             }]
         })
     }
-    async function getAnswersByClassroom(id: number) {
+    async function getAnswersByClassroom(id: string) {
         controllerRef.current = new AbortController();
         const signal = controllerRef.current.signal;
         const response = await makeRequest(signal, `answers/classroom/${id}`, 'GET', {}, true)
@@ -79,7 +82,7 @@ const Dashboard = () => {
             <div className="dashboard-main-container__header dashboard-header-container">
                 <select className="dashboard-header-container__select" onChange={(e)=>handleSelectDashboard(e,setIndexSelected)} name="Classrooms" id="classroom-select-box">
                     {data && data?.map((element,index)=>{
-                        return <option value={index}>{element.classroom_name}</option>
+                        return <option key={`option${element.id}`} value={index}>{element.classroom_name}</option>
                     })}
                 </select>
                 <Button classText="dashboard-header-container__button" buttonText="Add Classroom"></Button>
@@ -109,7 +112,12 @@ const Dashboard = () => {
                     </div>
                     <div className="courses-list-dashboard__courses">
                         {data && data.map((element,index) =>{
-                            return <ClassroomCard classroom = {element} index= {index}></ClassroomCard>
+                            return <CardList<FetchedClassroomsType> key={element.id} cardData = {element} index= {index} elementCard={[
+                                (index === 0 || index === 1 || index ===2) ? <img className='classroom-card-container__image' src={position} alt='Top Logo'></img>: <p className="classroom-card-container__description">{index+1}</p>,
+                                <p className="classroom-card-container__name"> {element.classroom_name}</p>,
+                                <p className="classroom-card-container__description">{element.description}</p>,
+                                 <Link className='classroom-card-container__link' to={`/classroom/`}>Enter</Link>
+                            ]}></CardList>
                         })}
                     </div>
                 </div>

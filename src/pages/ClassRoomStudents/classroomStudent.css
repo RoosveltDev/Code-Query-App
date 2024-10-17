@@ -1,0 +1,71 @@
+.classroom-students-main-container{
+    display: flex;
+    width: 100vw;
+}
+.classroom-students-container{
+    padding: 30px;
+    background-color: #FAFAFB;
+    height: 100vh;
+    width: 80%;
+}
+.header-classroom-students__h1{
+    font-size: 24px;
+}
+.classroom-students-container__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.student-container-main-classroom{
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+
+}
+.student-container-classroom{
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+.student-container-classroom__avatar{
+    width: 40px;
+    aspect-ratio: 1;
+}
+.student-container-status{
+    background-color: rgba(255, 143, 107,0.1);
+    color: rgb(255, 143, 107);
+    padding: 10px;
+    border-radius: 10px;
+}
+.student-container-status--active{
+    background-color: rgba(91, 147, 255, 0.1);
+    color: #5B93FF;
+}
+.more-actions-container{
+    display: flex;
+    background-color: rgba(231, 29, 54,0.05);
+    color: #E71D36;
+    align-items: center;
+    gap: 5px;
+    padding: 9px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.more-actions-container__image{
+    width: 10px;
+    aspect-ratio: 1;
+}
+.courses-list-dashboard__courses{
+    display: flex;
+    flex-direction: column;
+    gap:10px
+}
+.container-card-profile-students{
+
+}
+@media (max-width: 700px) {
+    .classroom-students-container{
+        width: 100%;
+    }
+   
+ }  
