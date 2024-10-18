@@ -9,6 +9,7 @@ import ClassRoomStudents from "../pages/ClassRoomStudents/ClassRoomStudents"
 import ConfirmStudent from "../pages/ConfirmStudent/ConfirmStudent"
 import Private from "../guard/Private"
 import Public from "../guard/Public"
+import Auth from "../pages/Auth/Auth"
 function Router(){
     
     return(
@@ -27,7 +28,7 @@ function Router(){
                 <Route path="/register" element={<Session/>}></Route>
                 <Route path="/recover" element={<Recover/>}></Route>
                 <Route path="/confirm" element={<Confirm/>}></Route>
-                
+                <Route path="/auth/success" element={<Auth/>}></Route>
                 <Route path="/" element={<Session/>}></Route>
               </Route>
              
