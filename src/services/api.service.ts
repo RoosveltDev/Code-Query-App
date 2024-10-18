@@ -49,6 +49,7 @@ const makeRequest = async (
   }
 
   const response = await fetch(`${url}/${context}`, requestOptions)
+  console.log(response)
   const result = response.status !== 204 ? await response.json() : {}
   const status = response.status
 
