@@ -11,6 +11,7 @@ import { handleClickToggle } from "./handlers/handleClickToogle.handler"
 import {useState } from "react"
 import useUser from "../../hook/useUser"
 import { handlerFacebook } from "./handlers/handleFacebookAuth.handler"
+import { handlerClickGmail } from "./handlers/handlerClickGmailAuth.handler"
 const Session = () => {
   const {storeUser} = useUser()
   const [toggleState,setToggleState] = useState(false)
@@ -35,7 +36,7 @@ const Session = () => {
                 }       
             </div>
             <div className="login-container__social social-container">
-                <button className="social-container__google social-element">
+                <button onClick={handlerClickGmail} className="social-container__google social-element">
                   <img className="social-element__logo" src={googleLogo} alt="gmail" />
                   <p className="social-element__text">Google</p>
                 </button>
