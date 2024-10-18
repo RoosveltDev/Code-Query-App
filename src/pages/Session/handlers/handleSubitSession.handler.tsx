@@ -1,11 +1,11 @@
 import sanitizeInput from "../../../utils/sanitize"
 import { validateInputs ,validatePassword} from "../../../utils/validateInputs"
 import { userSchema } from "../../../schemas/users.schemas"
-import { User,UserLogged,UserLogin } from "../../../types/user.type"
+import { User,UserLoggedStorage,UserLogin } from "../../../types/user.type"
 import { invalidEffect } from "../../../atoms/input/animations/label.animation"
 import makeRequest from "../../../services/api.service"
 import { NavigateFunction } from "react-router-dom"
-export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate:NavigateFunction,storeUser:(dataUser: UserLogged) => void)=>{
+export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate:NavigateFunction,storeUser:(dataUser: UserLoggedStorage) => void)=>{
     e.preventDefault()
     const inputs = document.querySelectorAll('.input-container__input') as NodeListOf<HTMLInputElement>
     const email = sanitizeInput(inputs[0].value.trim())
@@ -61,7 +61,7 @@ export const handleSubmitRegister=async (e:React.FormEvent<HTMLFormElement>,cont
     
 }
 
-export const handleLoginCurrying=(storeUser:(dataUser: UserLogged) => void)=>{
+export const handleLoginCurrying=(storeUser:(dataUser: UserLoggedStorage) => void)=>{
     return (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate?:NavigateFunction)=>{
         return handleSubmitLogin(e,controlSignal,navigate!,storeUser)
     }
