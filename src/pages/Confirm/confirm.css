@@ -1,0 +1,28 @@
+.confirm-container{
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+.confirm-container-main{
+    gap: 25px;
+}
+.confirm-container__imageThumbs,.confirm-container__imageIlustration{
+    position: absolute;
+}
+.confirm-container__imageIlustration{
+    width: 90px;
+    left: 0px;
+}
+.confirm-container__imageThumbs{
+    width: 60px;
+    height: 60px;
+    left: calc(50% - 30px);
+    top: calc(50% - 30px);
+}
+.confirm-container__image{
+    width: 100%;
+    height: 100%;
+}
+.confirm-container-main__link{
+    text-decoration: none;
+}

@@ -1,0 +1,15 @@
+
+/* Form */
+/* Form Container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: space-between;
+  width: 328px;
+  gap: 19px;
+}
+
+
+
+
