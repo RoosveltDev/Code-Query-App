@@ -10,6 +10,8 @@ import ConfirmStudent from "../pages/ConfirmStudent/ConfirmStudent"
 import Private from "../guard/Private"
 import Public from "../guard/Public"
 import Auth from "../pages/Auth/Auth"
+import LiveCoding from "../pages/LiveCoding/LiveCoding"
+
 function Router(){
     
     return(
@@ -21,6 +23,7 @@ function Router(){
                 <Route path="/dashboard" element={<Dashboard/>}></Route>
                 <Route path="/chat" element={<Chat/>}></Route>
                 <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
+                <Route path="/question/:id/live" element={<LiveCoding/>}></Route>
                 <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
               </Route>
               <Route element={<Public></Public>}>

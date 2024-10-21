@@ -1,0 +1,13 @@
+.live-main-container__layout{
+    display: flex;
+    gap: 10px;
+    
+}
+.live-main-container__description-question{
+    width: calc(40% - 10px);
+}
+.live-main-container__coding-panel{
+    width: 60%;
+    border-radius: 10px;
+    position: relative;
+}
