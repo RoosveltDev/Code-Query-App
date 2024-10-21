@@ -29,8 +29,7 @@ const Chat = () => {
               (!isMobile || (isClicked && isMobile) ) && <div className="container-main-chat__panel">
               {data && data.length>0 && <ChatPanel userChat={data[indexChatClicked]}></ChatPanel>}
             </div>
-            }
-            
+            }       
         </div>
   )
 }

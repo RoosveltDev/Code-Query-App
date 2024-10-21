@@ -1,0 +1,30 @@
+.coding-description-main-container{
+    background-color: rgba(240, 240, 240,0.9);
+    width: 100%;
+}
+.coding-description-main-container__header{
+    padding: 8px;
+    display: flex;
+    gap: 10px;
+}
+.header-coding-description-container__element{
+    display: flex;
+    gap: 5px;
+    border-left: 1px solid;
+    border-color: rgba(0, 0, 0,0.5);
+    padding-left: 15px;
+    cursor: pointer;
+
+}
+.element-header-coding-container__logo{
+    width: 15px;
+    aspect-ratio: 1;
+}
+.element-header-coding-container__text{
+    color: rgba(0, 0, 0,0.5);
+    font-size: 14px;
+}
+.element-header-coding-container--first{
+    border-left: none;
+    padding: 0px;
+}
