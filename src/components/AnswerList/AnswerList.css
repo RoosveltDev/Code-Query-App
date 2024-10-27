@@ -1,0 +1,29 @@
+.answer-list {
+  margin-bottom: 30px;
+}
+
+.answers-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.answer-item {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.answer-content {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.answer-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+}
