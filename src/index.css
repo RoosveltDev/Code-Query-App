@@ -1,6 +1,7 @@
 :root{
   --color-primary:#605BFF;
   --color-secondary:#030229;
+  --color-terciary:#fff;
 }
 
 *,*::after,*::before{
