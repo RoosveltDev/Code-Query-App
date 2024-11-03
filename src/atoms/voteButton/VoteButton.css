@@ -2,19 +2,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 16px;
+  gap: 4px;
+  padding: 8px;
+  border: none;
+  background: none;
+  color: #7f8c8d;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
-.vote-up,
-.vote-down {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
+.vote-button:hover {
+  color: #2c3e50;
+}
+
+.vote-button.voted {
+  color: #e74c3c;
 }
 
 .vote-count {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 8px 0;
+  font-size: 14px;
+  font-weight: 500;
 }

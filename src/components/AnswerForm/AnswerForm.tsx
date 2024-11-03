@@ -1,41 +1,53 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import RichTextEditor from "../../atoms/richTextEditor/RichTextEditor";
+import Button from "../../atoms/button/Button";
+import { handleSubmitAnswer } from "./handlers/handleSubmit.handler";
 import "./AnswerForm.css";
 
 interface AnswerFormProps {
-  onSubmit: (answerBody: string) => Promise<void>;
+  questionId: string;
+  onAnswerSubmitted?: () => void;
+  className?: string;
 }
 
-const AnswerForm = ({ onSubmit }: AnswerFormProps) => {
-  const [newAnswer, setNewAnswer] = useState("");
+export default function AnswerForm({
+  questionId,
+  onAnswerSubmitted,
+  className = "",
+}: AnswerFormProps) {
+  const [content, setContent] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (newAnswer.trim() && !isSubmitting) {
-      setIsSubmitting(true);
-      try {
-        await onSubmit(newAnswer);
-        setNewAnswer("");
-      } catch (error) {
-        console.error("Error submitting answer:", error);
-      } finally {
-        setIsSubmitting(false);
-      }
+    setIsSubmitting(true);
+
+    try {
+      await handleSubmitAnswer({
+        questionId,
+        content,
+      });
+
+      setContent("");
+      onAnswerSubmitted?.();
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className='new-answer-form'>
-      <h3>Tu Respuesta</h3>
-      <form onSubmit={handleSubmit}>
-        <RichTextEditor value={newAnswer} onChange={setNewAnswer} />
-        <button type='submit' disabled={isSubmitting || !newAnswer.trim()}>
-          {isSubmitting ? "Enviando..." : "Publicar tu respuesta"}
-        </button>
-      </form>
-    </div>
+    <form className={`answer-form ${className}`} onSubmit={handleSubmit}>
+      <h3 className='answer-form-title'>Your Answer</h3>
+      <RichTextEditor
+        value={content}
+        onChange={setContent}
+        placeholder='Write your answer here...'
+      />
+      <div className='answer-form-actions'>
+        <Button type='submit' disabled={isSubmitting || !content.trim()}>
+          {isSubmitting ? "Posting..." : "Post Your Answer"}
+        </Button>
+      </div>
+    </form>
   );
-};
-
-export default AnswerForm;
+}

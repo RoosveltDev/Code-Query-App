@@ -1,54 +1,41 @@
+import AuthorInfo from "../AuthorInfo/AuthorInfo";
+import VoteButton from "../../atoms/voteButton/VoteButton";
+import { Question } from "../../types/question/question.types";
 import "./QuestionContent.css";
 
 interface QuestionContentProps {
-  question: {
-    title: string;
-    body: string;
-    votes: number;
-    views: number;
-    askedAt: string;
-    author: string;
-  };
+  question: Question;
+  className?: string;
 }
 
-const QuestionContent = ({ question }: QuestionContentProps) => {
+export default function QuestionContent({
+  question,
+  className = "",
+}: QuestionContentProps) {
   return (
-    <div className='question-content'>
-      <h1 className='question-title'>{question.title}</h1>
-      <div className='question-subtitle'>
-        Easy Learning with HTML "Try it Yourself"
+    <div className={`question-content ${className}`}>
+      <div className='question-content-header'>
+        <h1 className='question-content-title'>{question.title}</h1>
+        <AuthorInfo
+          name={question.author.name}
+          avatar={question.author.avatar}
+          timeAgo={question.author.timeAgo}
+        />
       </div>
-
-      <div className='question-body'>
-        <div dangerouslySetInnerHTML={{ __html: question.body }} />
-        <div className='question-meta'>
-          <span>Preguntado {question.askedAt}</span>
-          <span>Visto {question.views} veces</span>
-          <span>Por {question.author}</span>
+      <div className='question-content-body'>
+        <div className='question-voting'>
+          <VoteButton
+            direction='up'
+            count={question.votes}
+            questionId={question.id}
+          />
+          <VoteButton direction='down' count={0} questionId={question.id} />
         </div>
-      </div>
-
-      <div className='example-section'>
-        <h2>Example</h2>
-        <pre className='code-block'>
-          <code>
-            {`<!DOCTYPE html>
-<html>
-<head>
-<title>Page Title</title>
-</head>
-<body>
-
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-
-</body>
-</html>`}
-          </code>
-        </pre>
+        <div
+          className='question-text'
+          dangerouslySetInnerHTML={{ __html: question.content }}
+        />
       </div>
     </div>
   );
-};
-
-export default QuestionContent;
+}

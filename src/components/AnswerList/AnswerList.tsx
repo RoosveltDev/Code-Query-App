@@ -1,35 +1,35 @@
+import AnswerCard from "../AnswerCard/AnswerCard";
+import { sortAnswers } from "./handlers/handleAnswers.handler";
+import { Answer } from "../../types/answer/answer.types";
 import "./AnswerList.css";
-
-interface Answer {
-  id: number;
-  body: string;
-  votes: number;
-  author: string;
-  answeredAt: string;
-}
 
 interface AnswerListProps {
   answers: Answer[];
+  className?: string;
 }
 
-const AnswerList = ({ answers }: AnswerListProps) => {
+export default function AnswerList({
+  answers,
+  className = "",
+}: AnswerListProps) {
+  const sortedAnswers = sortAnswers(answers);
+
   return (
-    <div className='answer-list'>
-      <h2 className='answers-title'>Respuestas ({answers.length})</h2>
-      {answers.map((answer) => (
-        <div key={answer.id} className='answer-item'>
-          <div
-            className='answer-content'
-            dangerouslySetInnerHTML={{ __html: answer.body }}
+    <div className={`answer-list ${className}`}>
+      <h2 className='answer-list-title'>
+        {answers.length} {answers.length === 1 ? "Answer" : "Answers"}
+      </h2>
+      <div className='answer-list-content'>
+        {sortedAnswers.map((answer) => (
+          <AnswerCard
+            key={answer.id}
+            content={answer.content}
+            author={answer.author}
+            votes={answer.votes}
+            isBestAnswer={answer.isBestAnswer}
           />
-          <div className='answer-meta'>
-            <span>Respondido por {answer.author}</span>
-            <span>{answer.answeredAt}</span>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
-};
-
-export default AnswerList;
+}

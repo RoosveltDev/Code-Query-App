@@ -1,75 +1,64 @@
 interface Question {
   id: string;
   title: string;
-  body: string;
+  content: string;
+  category: string;
+  subcategory: string;
   votes: number;
   views: number;
-  askedAt: string;
-  author: string;
+  author: {
+    name: string;
+    avatar: string;
+    timeAgo: string;
+  };
+  stats: {
+    answers: number;
+    votes: number;
+    views: number;
+    favorites: number;
+  };
 }
 
-interface Answer {
-  id: number;
-  body: string;
-  votes: number;
-  author: string;
-  answeredAt: string;
-}
-
-export const fetchQuestion = async (): Promise<Question> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        id: "1",
-        title: "¿Cómo se crea un componente en React?",
-        body: "Soy nuevo en React y me gustaría saber cómo crear un componente básico. ¿Pueden darme ejemplos o explicarme el proceso?",
-        votes: 10,
-        views: 42,
-        askedAt: "hace 3 horas",
-        author: "NuevoEnReact",
-      });
-    }, 500);
-  });
-};
-
-export const fetchAnswers = async (): Promise<Answer[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: 1,
-          body: "Para crear un componente en React, puedes usar una función que retorne JSX. Por ejemplo:\n\n```jsx\nfunction MiComponente() {\n  return <div>Hola Mundo</div>;\n}\n```\n\nLuego puedes usar este componente en tu aplicación como `<MiComponente />`.",
-          votes: 5,
-          author: "Ana Dev",
-          answeredAt: "hace 2 horas",
-        },
-        {
-          id: 2,
-          body: "También puedes usar una clase que extienda React.Component. Aunque este método es menos común en React moderno, aún es válido:\n\n```jsx\nclass MiComponente extends React.Component {\n  render() {\n    return <div>Hola Mundo</div>;\n  }\n}\n```",
-          votes: 3,
-          author: "Carlos React",
-          answeredAt: "hace 1 hora",
-        },
-      ]);
-    }, 500);
-  });
-};
-
-export const createQuestion = async (
-  title: string,
-  body: string
+export const handleFetchQuestion = async (
+  questionId: string
 ): Promise<Question> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        id: Date.now().toString(),
-        title,
-        body,
-        votes: 0,
-        views: 1,
-        askedAt: "justo ahora",
-        author: "Usuario Actual",
-      });
-    }, 500);
-  });
+  try {
+    // Aquí iría la llamada a la API
+    // Simulamos una respuesta
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    return {
+      id: questionId,
+      title: "¿Cómo implementar un editor de texto enriquecido en React?",
+      content:
+        "<p>Estoy tratando de implementar un editor de texto enriquecido en mi aplicación React. He intentado usar contentEditable pero tengo problemas con el control del estado. ¿Alguien puede ayudarme?</p>",
+      category: "React",
+      subcategory: "Components",
+      votes: 15,
+      views: 234,
+      author: {
+        name: "Juan Pérez",
+        avatar: "/placeholder.svg",
+        timeAgo: "2 hours",
+      },
+      stats: {
+        answers: 3,
+        votes: 15,
+        views: 234,
+        favorites: 5,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching question:", error);
+    throw error;
+  }
+};
+
+export const handleUpdateViews = async (questionId: string): Promise<void> => {
+  try {
+    // Aquí iría la llamada a la API para actualizar las vistas
+    await new Promise((resolve) => setTimeout(resolve, 300));
+  } catch (error) {
+    console.error("Error updating views:", error);
+  }
 };
