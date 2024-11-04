@@ -3,12 +3,14 @@ import { FaQuestionCircle } from "react-icons/fa";
 import Button from "../../atoms/button/Button";
 import Input from "../../atoms/input/Input";
 import RichTextEditor from "../../atoms/richTextEditor/RichTextEditor";
+import TagInput from "../../components/TagInput/TagInput";
 import "./CreateQuestion.css";
 
 const CreateQuestion = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const [tags, setTags] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,18 +20,7 @@ const CreateQuestion = () => {
     setError(null);
 
     try {
-      const questionData = {
-        title,
-        content,
-        image: image || undefined,
-      };
-
-      const response = await questionService.createQuestion(questionData);
-      console.log("Pregunta creada:", response);
-      // Aquí puedes agregar lógica adicional, como redireccionar al usuario o mostrar un mensaje de éxito
-      setTitle("");
-      setContent("");
-      setImage(null);
+      //Logica de la api
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Error al crear la pregunta"
@@ -70,6 +61,10 @@ const CreateQuestion = () => {
             placeholder='Proporciona más detalles sobre tu pregunta...'
             onImageUpload={handleImageUpload}
           />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='question-tags'>Etiquetas</label>
+          <TagInput tags={tags} onTagsChange={setTags} />
         </div>
         <Button
           type='submit'

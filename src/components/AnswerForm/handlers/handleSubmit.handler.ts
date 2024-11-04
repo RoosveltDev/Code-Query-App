@@ -14,7 +14,6 @@ export const handleSubmitAnswer = async ({
 }: SubmitAnswerParams): Promise<SubmitAnswerResult> => {
   try {
     // Aquí iría la llamada a la API
-    // Por ahora simulamos una respuesta
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     return {

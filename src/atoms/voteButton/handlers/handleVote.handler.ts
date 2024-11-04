@@ -18,7 +18,6 @@ export const handleVote = async ({
 }: VoteParams): Promise<VoteResult> => {
   try {
     // Aquí iría la llamada a la API
-    // Por ahora simulamos una respuesta
     await new Promise((resolve) => setTimeout(resolve, 300));
 
     return {

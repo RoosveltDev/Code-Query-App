@@ -9,7 +9,6 @@ export const sortAnswers = (answers: Answer[]): Answer[] => {
 };
 
 export const fetchAnswers = async (questionId: string): Promise<Answer[]> => {
-  // Simulating API call
   await new Promise((resolve) => setTimeout(resolve, 500));
 
   return [

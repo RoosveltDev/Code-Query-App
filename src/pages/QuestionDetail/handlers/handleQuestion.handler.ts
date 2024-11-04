@@ -24,7 +24,6 @@ export const handleFetchQuestion = async (
 ): Promise<Question> => {
   try {
     // Aquí iría la llamada a la API
-    // Simulamos una respuesta
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     return {

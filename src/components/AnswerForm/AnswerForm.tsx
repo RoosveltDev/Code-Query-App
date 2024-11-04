@@ -36,15 +36,10 @@ export default function AnswerForm({
   };
 
   const handleImageUpload = async (file: File): Promise<string> => {
-    // This is a placeholder function. In a real application, you would
-    // implement the actual image upload logic here, possibly using
-    // a service like AWS S3 or your own server's file upload endpoint.
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (event) => {
         if (event.target && typeof event.target.result === "string") {
-          // For demonstration purposes, we're returning a data URL.
-          // In a real app, you'd return the URL of the uploaded image.
           resolve(event.target.result);
         } else {
           reject(new Error("Failed to read file"));

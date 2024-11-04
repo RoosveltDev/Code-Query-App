@@ -23,7 +23,6 @@ export default function Button({
   disabled = false,
   classText,
 }: ButtonProps) {
-  // Support both old and new implementations
   const content = buttonText || children;
   const finalClassName = classText
     ? `btn-submit ${classText}`

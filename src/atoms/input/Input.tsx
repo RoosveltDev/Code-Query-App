@@ -13,11 +13,9 @@ interface ModernInputProps {
   icon?: React.ReactNode;
 }
 
-// Support both old and new implementations
 export default function Input(props: InputType | ModernInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Check if it's the old implementation
   if ("inputElement" in props) {
     const { inputElement, index } = props;
 
@@ -76,7 +74,6 @@ export default function Input(props: InputType | ModernInputProps) {
     );
   }
 
-  // New implementation
   const {
     type = "text",
     placeholder,
