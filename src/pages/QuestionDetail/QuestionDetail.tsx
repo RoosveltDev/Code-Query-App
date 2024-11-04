@@ -18,7 +18,7 @@ interface QuestionDetailProps {
   questionId: string;
 }
 
-export default function QuestionDetail({ questionId }: QuestionDetailProps) {
+export const QuestionDetail = ({ questionId }: QuestionDetailProps) => {
   const [question, setQuestion] = useState<Question | null>(null);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [relatedQuestions, setRelatedQuestions] = useState<RelatedQuestion[]>(
@@ -104,4 +104,6 @@ export default function QuestionDetail({ questionId }: QuestionDetailProps) {
       </main>
     </div>
   );
-}
+};
+
+export default QuestionDetail;

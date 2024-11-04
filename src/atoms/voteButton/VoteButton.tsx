@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 import { handleVote } from "./handlers/handleVote.handler";
 import "./VoteButton.css";
@@ -6,44 +6,54 @@ import "./VoteButton.css";
 interface VoteButtonProps {
   direction: "up" | "down";
   count: number;
-  isActive?: boolean;
+  isActive: boolean;
   questionId: string;
   answerId?: string;
   className?: string;
+  onVote: (direction: "up" | "down", isActive: boolean) => void;
 }
 
 export default function VoteButton({
   direction,
   count,
-  isActive = false,
+  isActive,
   questionId,
   answerId,
   className = "",
+  onVote,
 }: VoteButtonProps) {
-  const [isVoted, setIsVoted] = useState(isActive);
-  const [voteCount, setVoteCount] = useState(count);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const onClick = async () => {
-    const result = await handleVote({
+  useEffect(() => {
+    if (isAnimating) {
+      const timer = setTimeout(() => setIsAnimating(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isAnimating]);
+
+  const handleClick = async () => {
+    setIsAnimating(true);
+    onVote(direction, !isActive);
+
+    await handleVote({
       direction,
       questionId,
       answerId,
-      isVoted,
+      isVoted: !isActive,
     });
-
-    if (result.success) {
-      setIsVoted(!isVoted);
-      setVoteCount(result.newCount);
-    }
   };
 
   return (
     <button
-      className={`vote-button ${isVoted ? "voted" : ""} ${className}`}
-      onClick={onClick}
+      className={`vote-button ${isActive ? "voted" : ""} ${
+        isAnimating ? "animating" : ""
+      } ${direction} ${className}`}
+      onClick={handleClick}
+      aria-label={`Vote ${direction}`}
+      aria-pressed={isActive}
     >
       {direction === "up" ? <FaCaretUp /> : <FaCaretDown />}
-      <span className='vote-count'>{voteCount}</span>
+      <span className='vote-count'>{count}</span>
     </button>
   );
 }

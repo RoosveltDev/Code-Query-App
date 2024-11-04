@@ -1,10 +1,13 @@
-import { FaThumbsUp, FaComment } from "react-icons/fa";
-import AuthorInfo from "../authorInfo/AuthorInfo";
+import { useState } from "react";
+import { FaComment } from "react-icons/fa";
+import AuthorInfo from "../AuthorInfo/AuthorInfo";
+import VoteButton from "../../atoms/voteButton/VoteButton";
 import Button from "../../atoms/button/Button";
 import Badge from "../../atoms/badge/Badge";
 import "./AnswerCard.css";
 
 interface AnswerCardProps {
+  id: string;
   content: string;
   author: {
     name: string;
@@ -14,20 +17,34 @@ interface AnswerCardProps {
   };
   votes: number;
   isBestAnswer?: boolean;
-  onVote?: () => void;
   onComment?: () => void;
+  questionId: string;
   className?: string;
 }
 
 export default function AnswerCard({
+  id,
   content,
   author,
-  votes,
+  votes: initialVotes,
   isBestAnswer,
-  onVote,
   onComment,
+  questionId,
   className = "",
 }: AnswerCardProps) {
+  const [voteCount, setVoteCount] = useState(initialVotes);
+  const [voteStatus, setVoteStatus] = useState<"up" | "down" | null>(null);
+
+  const handleVote = (direction: "up" | "down", isActive: boolean) => {
+    if (isActive) {
+      setVoteStatus(direction);
+      setVoteCount((prevCount) => prevCount + (direction === "up" ? 1 : -1));
+    } else {
+      setVoteStatus(null);
+      setVoteCount((prevCount) => prevCount + (direction === "up" ? -1 : 1));
+    }
+  };
+
   return (
     <div className={`answer-card ${className}`}>
       {isBestAnswer && (
@@ -43,12 +60,31 @@ export default function AnswerCard({
           location={author.location}
           timeAgo={author.timeAgo}
         />
-        <p className='answer-text'>{content}</p>
+        <div className='answer-body'>
+          <div className='vote-buttons'>
+            <VoteButton
+              direction='up'
+              count={voteCount}
+              isActive={voteStatus === "up"}
+              questionId={questionId}
+              answerId={id}
+              onVote={handleVote}
+            />
+            <VoteButton
+              direction='down'
+              count={voteCount}
+              isActive={voteStatus === "down"}
+              questionId={questionId}
+              answerId={id}
+              onVote={handleVote}
+            />
+          </div>
+          <div
+            className='answer-text'
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        </div>
         <div className='answer-actions'>
-          <Button variant='ghost' size='small' onClick={onVote}>
-            <FaThumbsUp />
-            {votes}
-          </Button>
           <Button variant='ghost' size='small' onClick={onComment}>
             <FaComment />
             Add a Comment

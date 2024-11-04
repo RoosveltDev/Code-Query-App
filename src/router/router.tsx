@@ -31,6 +31,8 @@ function Router() {
               path='/classroom/:id/student'
               element={<ClassRoomStudents />}
             ></Route>
+            <Route path='/question/:id' element={<QuestionDetail />}></Route>
+            <Route path='/create' element={<CreateQuestion />}></Route>
           </Route>
           <Route element={<Public></Public>}>
             <Route path='/login' element={<Session />}></Route>
@@ -39,8 +41,6 @@ function Router() {
             <Route path='/confirm' element={<Confirm />}></Route>
             <Route path='/auth/success' element={<Auth />}></Route>
             <Route path='/' element={<Session />}></Route>
-            <Route path='/question' element={<QuestionDetail />}></Route>
-            <Route path='/create' element={<CreateQuestion />}></Route>
           </Route>
         </Routes>
       </Layout>

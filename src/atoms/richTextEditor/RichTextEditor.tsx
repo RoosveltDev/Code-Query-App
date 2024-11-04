@@ -1,17 +1,19 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   FaBold,
   FaItalic,
+  FaUnderline,
   FaAlignLeft,
   FaAlignCenter,
   FaAlignRight,
+  FaAlignJustify,
   FaListUl,
   FaListOl,
   FaLink,
+  FaImage,
   FaEye,
 } from "react-icons/fa";
 import Button from "../button/Button";
-import { handleFormat } from "./handlers/handleEditor.handler";
 import "./RichTextEditor.css";
 
 interface RichTextEditorProps {
@@ -19,31 +21,106 @@ interface RichTextEditorProps {
   onChange: (value: string) => void;
   placeholder?: string;
   className?: string;
+  onImageUpload: (file: File) => Promise<string>;
 }
 
-export default function RichTextEditor({
+const RichTextEditor = ({
   value,
   onChange,
   placeholder,
   className = "",
-}: RichTextEditorProps) {
+  onImageUpload,
+}: RichTextEditorProps) => {
   const [isPreview, setIsPreview] = useState(false);
-  const [editorContent, setEditorContent] = useState(value);
   const editorRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [activeStyles, setActiveStyles] = useState<string[]>([]);
 
   useEffect(() => {
-    setEditorContent(value);
+    if (editorRef.current && editorRef.current.innerHTML !== value) {
+      const selection = window.getSelection();
+      const range = selection?.getRangeAt(0);
+      const startOffset = range?.startOffset;
+
+      editorRef.current.innerHTML = value;
+
+      if (selection && range && startOffset !== undefined) {
+        const newRange = document.createRange();
+        newRange.setStart(
+          editorRef.current,
+          Math.min(startOffset, editorRef.current.childNodes.length)
+        );
+        newRange.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(newRange);
+      }
+    }
   }, [value]);
 
-  useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.innerHTML = editorContent;
-    }
-  }, [editorContent]);
+  const updateActiveStyles = () => {
+    const styles: string[] = [];
+    if (document.queryCommandState("bold")) styles.push("bold");
+    if (document.queryCommandState("italic")) styles.push("italic");
+    if (document.queryCommandState("underline")) styles.push("underline");
+    if (document.queryCommandState("insertUnorderedList"))
+      styles.push("unorderedList");
+    if (document.queryCommandState("insertOrderedList"))
+      styles.push("orderedList");
+    if (document.queryCommandState("justifyLeft")) styles.push("alignLeft");
+    if (document.queryCommandState("justifyCenter")) styles.push("alignCenter");
+    if (document.queryCommandState("justifyRight")) styles.push("alignRight");
+    if (document.queryCommandState("justifyFull")) styles.push("alignJustify");
+    setActiveStyles(styles);
+  };
 
-  const handleChange = (content: string) => {
-    setEditorContent(content);
-    onChange(content);
+  const handleFormat = (command: string, value?: string) => {
+    document.execCommand(command, false, value);
+    updateActiveStyles();
+    editorRef.current?.focus();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      document.execCommand("insertParagraph", false);
+    }
+  };
+
+  const insertLink = () => {
+    const url = prompt("Enter the URL:");
+    if (url) {
+      document.execCommand("createLink", false, url);
+      onChange(editorRef.current?.innerHTML || "");
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData("text/plain");
+    document.execCommand("insertText", false, text);
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      try {
+        const imageUrl = await onImageUpload(file);
+        document.execCommand("insertImage", false, imageUrl);
+        onChange(editorRef.current?.innerHTML || "");
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        alert("Failed to upload image. Please try again.");
+      }
+    }
+  };
+
+  const triggerImageUpload = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleInput = () => {
+    updateActiveStyles();
+    onChange(editorRef.current?.innerHTML || "");
   };
 
   return (
@@ -52,59 +129,88 @@ export default function RichTextEditor({
         <Button
           variant='ghost'
           size='small'
-          onClick={() => handleFormat("bold", handleChange)}
+          onClick={() => handleFormat("bold")}
+          className={activeStyles.includes("bold") ? "active" : ""}
         >
           <FaBold />
         </Button>
         <Button
           variant='ghost'
           size='small'
-          onClick={() => handleFormat("italic", handleChange)}
+          onClick={() => handleFormat("italic")}
+          className={activeStyles.includes("italic") ? "active" : ""}
         >
           <FaItalic />
         </Button>
         <Button
           variant='ghost'
           size='small'
-          onClick={() => handleFormat("justifyLeft", handleChange)}
+          onClick={() => handleFormat("underline")}
+          className={activeStyles.includes("underline") ? "active" : ""}
+        >
+          <FaUnderline />
+        </Button>
+        <Button
+          variant='ghost'
+          size='small'
+          onClick={() => handleFormat("justifyLeft")}
+          className={activeStyles.includes("alignLeft") ? "active" : ""}
         >
           <FaAlignLeft />
         </Button>
         <Button
           variant='ghost'
           size='small'
-          onClick={() => handleFormat("justifyCenter", handleChange)}
+          onClick={() => handleFormat("justifyCenter")}
+          className={activeStyles.includes("alignCenter") ? "active" : ""}
         >
           <FaAlignCenter />
         </Button>
         <Button
           variant='ghost'
           size='small'
-          onClick={() => handleFormat("justifyRight", handleChange)}
+          onClick={() => handleFormat("justifyRight")}
+          className={activeStyles.includes("alignRight") ? "active" : ""}
         >
           <FaAlignRight />
         </Button>
         <Button
           variant='ghost'
           size='small'
-          onClick={() => handleFormat("insertUnorderedList", handleChange)}
+          onClick={() => handleFormat("justifyFull")}
+          className={activeStyles.includes("alignJustify") ? "active" : ""}
+        >
+          <FaAlignJustify />
+        </Button>
+        <Button
+          variant='ghost'
+          size='small'
+          onClick={() => handleFormat("insertUnorderedList")}
+          className={activeStyles.includes("unorderedList") ? "active" : ""}
         >
           <FaListUl />
         </Button>
         <Button
           variant='ghost'
           size='small'
-          onClick={() => handleFormat("insertOrderedList", handleChange)}
+          onClick={() => handleFormat("insertOrderedList")}
+          className={activeStyles.includes("orderedList") ? "active" : ""}
         >
           <FaListOl />
         </Button>
-        <Button
-          variant='ghost'
-          size='small'
-          onClick={() => handleFormat("createLink", handleChange)}
-        >
+        <Button variant='ghost' size='small' onClick={insertLink}>
           <FaLink />
         </Button>
+        <Button variant='ghost' size='small' onClick={triggerImageUpload}>
+          <FaImage />
+        </Button>
+        <input
+          type='file'
+          ref={fileInputRef}
+          onChange={handleImageUpload}
+          accept='image/*'
+          style={{ display: "none" }}
+        />
         <Button
           variant='ghost'
           size='small'
@@ -116,17 +222,23 @@ export default function RichTextEditor({
       {isPreview ? (
         <div
           className='editor-preview'
-          dangerouslySetInnerHTML={{ __html: editorContent }}
+          dangerouslySetInnerHTML={{ __html: value }}
         />
       ) : (
         <div
           ref={editorRef}
           className='editor-content'
           contentEditable
-          onInput={(e) => handleChange(e.currentTarget.innerHTML)}
+          onInput={handleInput}
+          onKeyDown={handleKeyDown}
+          onPaste={handlePaste}
+          onMouseUp={updateActiveStyles}
+          onKeyUp={updateActiveStyles}
           data-placeholder={placeholder}
         />
       )}
     </div>
   );
-}
+};
+
+export default RichTextEditor;

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import AuthorInfo from "../AuthorInfo/AuthorInfo";
 import VoteButton from "../../atoms/voteButton/VoteButton";
 import { Question } from "../../types/question/question.types";
@@ -12,6 +13,19 @@ export default function QuestionContent({
   question,
   className = "",
 }: QuestionContentProps) {
+  const [voteCount, setVoteCount] = useState(question.votes);
+  const [voteStatus, setVoteStatus] = useState<"up" | "down" | null>(null);
+
+  const handleVote = (direction: "up" | "down", isActive: boolean) => {
+    if (isActive) {
+      setVoteStatus(direction);
+      setVoteCount((prevCount) => prevCount + (direction === "up" ? 1 : -1));
+    } else {
+      setVoteStatus(null);
+      setVoteCount((prevCount) => prevCount + (direction === "up" ? -1 : 1));
+    }
+  };
+
   return (
     <div className={`question-content ${className}`}>
       <div className='question-content-header'>
@@ -26,10 +40,18 @@ export default function QuestionContent({
         <div className='question-voting'>
           <VoteButton
             direction='up'
-            count={question.votes}
+            count={voteCount}
+            isActive={voteStatus === "up"}
             questionId={question.id}
+            onVote={handleVote}
           />
-          <VoteButton direction='down' count={0} questionId={question.id} />
+          <VoteButton
+            direction='down'
+            count={voteCount}
+            isActive={voteStatus === "down"}
+            questionId={question.id}
+            onVote={handleVote}
+          />
         </div>
         <div
           className='question-text'
