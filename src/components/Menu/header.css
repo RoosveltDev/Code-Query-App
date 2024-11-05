@@ -1,0 +1,12 @@
+.floating-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    cursor: pointer;
+    color: var(--color-terciary);
+    background-color: var(--color-primary);
+    border-radius: 8px;
+    padding: 5px;
+    /* border-bottom: 1px var(--color-primary); */
+  }
