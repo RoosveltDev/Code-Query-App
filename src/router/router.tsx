@@ -11,6 +11,7 @@ import Private from "../guard/Private"
 import Public from "../guard/Public"
 import Auth from "../pages/Auth/Auth"
 import LiveCoding from "../pages/LiveCoding/LiveCoding"
+import Pricing from "../pages/Pricing/Pricing"
 
 function Router(){
     
@@ -25,6 +26,7 @@ function Router(){
                 <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
                 <Route path="/question/:id/live" element={<LiveCoding/>}></Route>
                 <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
+                <Route path="/pricing" element={<Pricing/>}></Route>
               </Route>
               <Route element={<Public></Public>}>
                 <Route path="/login" element={<Session/>}></Route>
