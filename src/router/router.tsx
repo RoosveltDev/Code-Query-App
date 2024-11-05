@@ -31,7 +31,7 @@ function Router() {
               path='/classroom/:id/student'
               element={<ClassRoomStudents />}
             ></Route>
-            <Route path='/question/:id' element={<QuestionDetail />}></Route>
+            <Route path='/question' element={<QuestionDetail />}></Route>
             <Route path='/create' element={<CreateQuestion />}></Route>
           </Route>
           <Route element={<Public></Public>}>
