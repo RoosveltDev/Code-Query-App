@@ -1,9 +1,25 @@
+.OpenMenu__header__main a,.hamburger-list__logout{
+    text-decoration: none;
+    color: var(--color-terciary);
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 1.25rem !important;
+}
+.hamburger-main-container{
+    width: 30px;
+    height: 30px;
+}
+.hamburger-react{
+    left: calc(50% - 24px);
+    top: calc(50% - 24px);
+}
 .OpenMenu {
     position: fixed;
     top: 70px;
     right: 10px;
     width: 200px;
-    height: 50vh;
+    height: calc(95vh - 70px);
     padding: 24px;
     color: var(--color-terciary);
     background-color: var(--color-primary);
@@ -38,9 +54,12 @@
     font-size: 2.25rem;
 }
 .OpenMenu__header__main ul{
+    display: flex;
+    flex-direction: column;
     list-style-type: none;
     padding: 0;
     margin: 0;
+    gap: 10px;
 }
 .OpenMenu__header__main li{
     margin: 10px 0;
@@ -52,15 +71,7 @@
     background-color: rgba(0, 123, 255, 0.1);
     border-radius: 5px;
 }
-.OpenMenu__header__main a{
-    text-decoration: none;
-    color: var(--color-terciary);
-    display: flex;
-    align-items: center;
-    position: relative;
-    font-size: 1.25rem;
-}
-.OpenMenu__header__main a::before{
+.OpenMenu__header__main a::before,.hamburger-list__logout::before{
     content: '';
     position: absolute;
     bottom: 0;
@@ -73,12 +84,12 @@
     transform-origin: left; 
     transition: transform 0.5s ease-in-out;
 }
-.OpenMenu__header__main a:hover::before{
+.OpenMenu__header__main a:hover::before,.hamburger-list__logout:hover::before{
     transform: scaleX(1);
 }
-.OpenMenu__header__main a:hover{
+.OpenMenu__header__main a:hover,.hamburger-list__logout:hover{
     color: var(--color-secondary);
 }
-.OpenMenu__header__main a svg{
+.OpenMenu__header__main a svg,.hamburger-list__logout svg{
     margin-right: 5px;
 }
