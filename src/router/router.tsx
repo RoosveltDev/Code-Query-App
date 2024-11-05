@@ -12,6 +12,7 @@ import Public from "../guard/Public"
 import Auth from "../pages/Auth/Auth"
 import LiveCoding from "../pages/LiveCoding/LiveCoding"
 import Pricing from "../pages/Pricing/Pricing"
+import CustomerPortal from "../pages/CustomerPortal/CustomerPortal"
 
 function Router(){
     
@@ -27,6 +28,7 @@ function Router(){
                 <Route path="/question/:id/live" element={<LiveCoding/>}></Route>
                 <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
                 <Route path="/pricing" element={<Pricing/>}></Route>
+                <Route path="/customerPortal" element={<CustomerPortal/>}></Route>
               </Route>
               <Route element={<Public></Public>}>
                 <Route path="/login" element={<Session/>}></Route>
