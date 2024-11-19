@@ -13,6 +13,7 @@ import Auth from "../pages/Auth/Auth"
 import LiveCoding from "../pages/LiveCoding/LiveCoding"
 import Pricing from "../pages/Pricing/Pricing"
 import CustomerPortal from "../pages/CustomerPortal/CustomerPortal"
+import ClassroomsAdmin from "../pages/ClassroomAdmin/ClassroomsAdmin"
 
 function Router(){
     
@@ -23,6 +24,7 @@ function Router(){
             <Routes>
             <Route element={<Private></Private>}>
                 <Route path="/dashboard" element={<Dashboard/>}></Route>
+                <Route path="/classrooms" element={<ClassroomsAdmin/>}></Route>
                 <Route path="/chat" element={<Chat/>}></Route>
                 <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
                 <Route path="/question/:id/live" element={<LiveCoding/>}></Route>

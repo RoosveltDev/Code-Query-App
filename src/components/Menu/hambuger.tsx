@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./hamburger.css";
 import Hamburger from "hamburger-react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaChalkboard, FaComments } from "react-icons/fa";
+import { FaChalkboardTeacher, FaChalkboard, FaComments } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
 import useUser from "../../hook/useUser";
 import { handleLogout } from "./handlers/handleLogout.handler";
@@ -26,6 +26,11 @@ const HamburgerComponent: React.FC = () => {
                   <Link to={"dashboard"}>
                     {" "}
                     <FaChalkboard /> dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"classrooms"}>
+                    <FaChalkboardTeacher /> Classrooms
                   </Link>
                 </li>
                 <li>

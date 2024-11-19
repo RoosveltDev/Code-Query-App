@@ -10,4 +10,5 @@ export type FormType = {
 export type FormElement={
     type:string;
     label:string;
+    value?:string;
 }

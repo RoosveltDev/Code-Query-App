@@ -8,7 +8,6 @@ export const handleSearch = <T extends fetchedChatList >(
   dataRef: React.RefObject<T[]>,
   target: (keyof T | keyof T['user'])[],
 ) => {
-  console.log(dataRef.current);
   const text = e.target.value;
 
   if (text === "") {
