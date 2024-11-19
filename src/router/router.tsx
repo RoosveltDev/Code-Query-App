@@ -27,7 +27,7 @@ function Router(){
                 <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
                 <Route path="/question/:id/live" element={<LiveCoding/>}></Route>
                 <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
-                <Route path="/classroom/:id/comments" element={<ClassRoom/>}></Route> 
+                <Route path="/classroom/:id" element={<ClassRoom/>}></Route> 
                 {/* crear el componente  de clasrroom id*/}
               </Route>
               <Route element={<Public></Public>}>

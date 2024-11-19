@@ -13,11 +13,13 @@ const useFetch = <T,>({fetchOptions}:FetchType):[T | null, React.Dispatch<React.
         const signal = controllerRef.current.signal
         const {context,method,data,hasCredentials,bodyFormat} =fetchOptions
         const {results} = await makeRequest(signal,context,method,data,hasCredentials,bodyFormat)
-        setData(results.results)
+        setData(results.results ? results.results:results)
+        // setData(results.results)
     }
     catch(error){
         console.log(error)
     }
+
       
    }
    useEffect(()=>{

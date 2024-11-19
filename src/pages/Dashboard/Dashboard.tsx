@@ -240,7 +240,7 @@ const Dashboard = () => {
                       </p>,
                       <Link
                         className="classroom-card-container__link"
-                        to={`/classroom/`}
+                        to={`/classroom/${element.id}`}
                       >
                         Enter
                       </Link>,

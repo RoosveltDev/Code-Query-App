@@ -1,3 +1,4 @@
+import { Student } from './user.type';
 export interface User {
     id: string;
     name: string;
@@ -13,9 +14,12 @@ export interface User {
   
   export interface Comment {
     id: string;
-    question: string;
-    createdAt: string;
-    user: User;
-    answers: Answer[];
+    title:string;
+    body:string;
+    image?: string;
+    status: string;
+    created_at:string;
+    user: Student;
+    tags: {name:string}[];
   }
   

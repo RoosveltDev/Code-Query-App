@@ -5,7 +5,7 @@ import Hamburger from "hamburger-react";
 import { Link } from "react-router-dom";
 import { FaChalkboard, FaComments } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
-import { SiGoogleclassroom } from "react-icons/si";
+// import { SiGoogleclassroom } from "react-icons/si";
 
 const HamburgerComponent: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -30,11 +30,11 @@ const HamburgerComponent: React.FC = () => {
                     <FaComments />  chat
                   </Link>
                 </li>
-                <li>
-                  <Link to={"classrooms/${id}/comments"}>
+                {/* <li>
+                  <Link to={"classrooms"}>
                     <SiGoogleclassroom />  classroom
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to={"loguot"}>
                     <LuLogOut />  loguot
