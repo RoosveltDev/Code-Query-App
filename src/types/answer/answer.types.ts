@@ -1,12 +1,11 @@
+import {  UserLogged } from "../user.type"
+
 export interface Answer {
-  id: string;
-  content: string;
-  author: {
-    name: string;
-    avatar: string;
-    location: string;
-    timeAgo: string;
-  };
-  votes: number;
-  isBestAnswer?: boolean;
+    is_accepted: boolean,
+    id: number,
+    body: string,
+    classroom_id: number,
+    user:UserLogged
+    created_at: string,
+    image?: string
 }

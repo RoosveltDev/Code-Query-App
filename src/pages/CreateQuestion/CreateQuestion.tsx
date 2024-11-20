@@ -1,39 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
 import Button from "../../atoms/button/Button";
 import Input from "../../atoms/input/Input";
 import RichTextEditor from "../../atoms/richTextEditor/RichTextEditor";
 import TagInput from "../../components/TagInput/TagInput";
 import "./CreateQuestion.css";
+import { useParams } from "react-router-dom";
+import { handleSubmit } from "./handlers/handleCreateQuestion.handler";
+
 
 const CreateQuestion = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState<File | null>(null);
+  /* const [image, setImage] = useState<File | null>(null); */
   const [tags, setTags] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { id } = useParams();
+  const classroom_id = id as string
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError(null);
+  const controllerRef = useRef<AbortController | null>(null)
 
-    try {
-      //Logica de la api
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Error al crear la pregunta"
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const handleImageUpload = async (file: File): Promise<string> => {
-    setImage(file);
+   /*  setImage(file) */
     return URL.createObjectURL(file);
   };
+  useEffect(()=>{
+    return()=> {
+      controllerRef.current?.abort()
+    }
+  },[])
 
   return (
     <div className='create-question'>
@@ -42,15 +39,15 @@ const CreateQuestion = () => {
         Hacer una pregunta
       </h1>
       {error && <div className='error-message'>{error}</div>}
-      <form onSubmit={handleSubmit} className='question-form'>
+      <form onSubmit={(e)=>handleSubmit(e,setIsSubmitting,setError,{classroom_id:classroom_id.toString(),title,body:content,tags:[1]},controllerRef)} className='question-form'>
         <div className='form-group'>
           <label htmlFor='question-title'>Título de la pregunta</label>
           <Input
-            id='question-title'
+            
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder='¿Cuál es tu pregunta?'
-            required
+            
           />
         </div>
         <div className='form-group'>

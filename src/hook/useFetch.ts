@@ -6,23 +6,23 @@ import makeRequest from "../services/api.service"
 const useFetch = <T,>({fetchOptions}:FetchType):[T | null, React.Dispatch<React.SetStateAction<T | null>>] => {
     const [data,setData] = useState< T | null>(null) 
     const controllerRef = useRef<AbortController|null>(null)
-    
+
    async function requestServer(){
     try{
         controllerRef.current = new AbortController()
         const signal = controllerRef.current.signal
         const {context,method,data,hasCredentials,bodyFormat} =fetchOptions
-        const {results} = await makeRequest(signal,context,method,data,hasCredentials,bodyFormat)
-        console.log(results)
-        setData(results.results)
+        const {results,status} = await makeRequest(signal,context,method,data,hasCredentials,bodyFormat)
+        console.log(status)
+        setData(results.results ? results.results:results)
     }
     catch(error){
-        console.log(error)
+        console.log("Error from useFetch"+ error)
     }
       
    }
    useEffect(()=>{
-   
+     
      requestServer()
      return ()=>{
        

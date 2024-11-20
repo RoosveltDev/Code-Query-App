@@ -1,12 +1,13 @@
-import { useState } from "react";
+/* import { useState } from "react"; */
 import { FaComment } from "react-icons/fa";
 import AuthorInfo from "../AuthorInfo/AuthorInfo";
-import VoteButton from "../../atoms/voteButton/VoteButton";
+/* import VoteButton from "../../atoms/voteButton/VoteButton"; */
 import Button from "../../atoms/button/Button";
 import Badge from "../../atoms/badge/Badge";
 import "./AnswerCard.css";
-
-interface AnswerCardProps {
+import { Answer } from "../../types/answer/answer.types";
+import profile from '../../assets/avatar.svg'
+/* interface AnswerCardProps {
   id: string;
   content: string;
   author: {
@@ -20,19 +21,20 @@ interface AnswerCardProps {
   onComment?: () => void;
   questionId: string;
   className?: string;
-}
+} */
 
 export default function AnswerCard({
-  id,
-  content,
-  author,
-  votes: initialVotes,
-  isBestAnswer,
+  
+  body,
+  user,
+  is_accepted,
+  /* votes: initialVotes, */
+  /* isBestAnswer, */
   onComment,
-  questionId,
+  /* questionId, */
   className = "",
-}: AnswerCardProps) {
-  const [voteCount, setVoteCount] = useState(initialVotes);
+}: Answer & {className?:string,onComment?:()=>void}) {
+ /*  const [voteCount, setVoteCount] = useState(initialVotes);
   const [voteStatus, setVoteStatus] = useState<"up" | "down" | null>(null);
 
   const handleVote = (direction: "up" | "down", isActive: boolean) => {
@@ -43,11 +45,11 @@ export default function AnswerCard({
       setVoteStatus(null);
       setVoteCount((prevCount) => prevCount + (direction === "up" ? -1 : 1));
     }
-  };
+  }; */
 
   return (
     <div className={`answer-card ${className}`}>
-      {isBestAnswer && (
+      {is_accepted && (
         <div className='best-answer-header'>
           <Badge variant='success'>Best Answer</Badge>
           <span className='askers-choice'>Asker's Choice</span>
@@ -55,14 +57,14 @@ export default function AnswerCard({
       )}
       <div className='answer-content'>
         <AuthorInfo
-          name={author.name}
-          avatar={author.avatar}
-          location={author.location}
-          timeAgo={author.timeAgo}
+          name={user.name}
+          avatar={user.avatar? user.avatar:profile}
+          /* location={user.location}
+          timeAgo={user.timeAgo} */
         />
         <div className='answer-body'>
           <div className='vote-buttons'>
-            <VoteButton
+          {/*   <VoteButton
               direction='up'
               count={voteCount}
               isActive={voteStatus === "up"}
@@ -77,11 +79,11 @@ export default function AnswerCard({
               questionId={questionId}
               answerId={id}
               onVote={handleVote}
-            />
+            /> */}
           </div>
           <div
             className='answer-text'
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: body }}
           />
         </div>
         <div className='answer-actions'>

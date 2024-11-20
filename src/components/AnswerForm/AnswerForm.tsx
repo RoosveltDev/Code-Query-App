@@ -1,23 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import RichTextEditor from "../../atoms/richTextEditor/RichTextEditor";
 import Button from "../../atoms/button/Button";
 import { handleSubmitAnswer } from "./handlers/handleSubmit.handler";
 import "./AnswerForm.css";
+import { Answer } from "../../types/answer/answer.types";
+import useUser from "../../hook/useUser";
 
 interface AnswerFormProps {
   questionId: string;
-  onAnswerSubmitted?: () => void;
+  classRoomId:string;
+  setAnswer: React.Dispatch<React.SetStateAction<Answer[] | null>>;
   className?: string;
 }
 
 export default function AnswerForm({
   questionId,
-  onAnswerSubmitted,
+  classRoomId,
+  setAnswer,
   className = "",
 }: AnswerFormProps) {
+  console.log(classRoomId)
   const [content, setContent] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const controllerRef = useRef<AbortController | null>(null)
+  const {user} = useUser()
+  useEffect(()=>{
+    return controllerRef.current?.abort()
+  },[])
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -26,10 +35,14 @@ export default function AnswerForm({
       await handleSubmitAnswer({
         questionId,
         content,
+        controllerRef,
+        setAnswer,
+        classRoomId,
+        user
       });
 
       setContent("");
-      onAnswerSubmitted?.();
+      
     } finally {
       setIsSubmitting(false);
     }

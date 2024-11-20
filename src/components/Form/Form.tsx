@@ -21,7 +21,7 @@ const Form = ({children,inputs,submit,buttonText}:FormType) => {
     <form onSubmit={(e)=>submit(e,controllerSignalRef.current as AbortController,navigate)} className="login_container__form form-container" noValidate>
         {inputs.map((element:FormElement,index:number)=> <Input key={`form-${index}`} inputElement={element} index={index}></Input>)}
         {children}
-        <Button buttonText={buttonText}></Button>
+        <Button buttonText={buttonText} type='submit'></Button>
     </form>
   )
 }

@@ -1,16 +1,32 @@
-interface CreateQuestionParams {
-  title: string;
-  content: string;
-  tags: string[];
-}
+import makeRequest from "../../../services/api.service";
 
-export const handleCreateQuestion = async (
-  params: CreateQuestionParams
-): Promise<void> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log("Question created:", params);
-      resolve();
-    }, 1000);
-  });
+
+
+
+export const handleSubmit= async (
+  e: React.FormEvent,
+  setIsSubmitting:React.Dispatch<React.SetStateAction<boolean>>,
+  setError:React.Dispatch<React.SetStateAction<string | null>>,
+  body:{classroom_id:string,title:string,body:string,tags:number[]},
+  controllerRef: React.MutableRefObject<AbortController | null>,
+  
+) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setError(null);
+
+  try {
+    //Logica de la api
+    controllerRef.current = new AbortController()
+    const signal = controllerRef.current.signal
+    const {status} = await makeRequest(signal,'questions','POST',body,true,"form-data")
+    console.log(status)
+
+  } catch (err) {
+    setError(
+      err instanceof Error ? err.message : "Error al crear la pregunta"
+    );
+  } finally {
+    setIsSubmitting(false);
+  }
 };

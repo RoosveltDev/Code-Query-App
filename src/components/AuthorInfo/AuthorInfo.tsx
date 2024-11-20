@@ -3,8 +3,8 @@ import "./AuthorInfo.css";
 
 interface AuthorInfoProps {
   name: string;
-  avatar: string;
-  timeAgo: string;
+  avatar?: string;
+  timeAgo?: string;
   location?: string;
   className?: string;
 }

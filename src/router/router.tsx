@@ -32,8 +32,8 @@ function Router(){
                 <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
                 <Route path="/pricing" element={<Pricing/>}></Route>
                 <Route path="/customerPortal" element={<CustomerPortal/>}></Route>
-                <Route path='/question' element={<QuestionDetail questionId={"1"}/>}></Route>
-               <Route path='/create' element={<CreateQuestion />}></Route>
+                <Route path='/classroom/:id/question/:questionId/answers' element={<QuestionDetail/>}></Route>
+               <Route path='/classroom/:id/question/create' element={<CreateQuestion />}></Route>
               </Route>
               <Route element={<Public></Public>}>
                 <Route path="/login" element={<Session/>}></Route>

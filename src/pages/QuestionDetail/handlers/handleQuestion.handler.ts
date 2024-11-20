@@ -6,7 +6,7 @@ interface Question {
   subcategory: string;
   votes: number;
   views: number;
-  author: {
+  user: {
     name: string;
     avatar: string;
     timeAgo: string;

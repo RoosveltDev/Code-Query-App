@@ -12,7 +12,9 @@ export default function AnswerList({
   answers,
   className = "",
 }: AnswerListProps) {
-  const sortedAnswers = sortAnswers(answers);
+  console.log(answers)
+  answers = answers ? answers : []
+  const sortedAnswers = answers
 
   return (
     <div className={`answer-list ${className}`}>
@@ -22,11 +24,13 @@ export default function AnswerList({
       <div className='answer-list-content'>
         {sortedAnswers.map((answer) => (
           <AnswerCard
-            key={answer.id}
-            content={answer.content}
-            author={answer.author}
-            votes={answer.votes}
-            isBestAnswer={answer.isBestAnswer}
+            id={answer.id}
+            body={answer.body}
+            user={answer.user}
+            /* votes={answer.votes} */
+            is_accepted={answer.is_accepted}
+            classroom_id={answer.classroom_id}
+            created_at={answer.created_at}
           />
         ))}
       </div>

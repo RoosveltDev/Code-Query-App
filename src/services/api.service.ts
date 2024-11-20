@@ -4,7 +4,7 @@ const makeRequest = async (
   signal: AbortSignal,
   context: string,
   method: string,
-  data: { [id: string]: string | number },
+  data: { [id: string]: string | number | number[]},
   hasCredentials: boolean,
   bodyFormat: "row" | "form-data" = "row"
 ) => {
