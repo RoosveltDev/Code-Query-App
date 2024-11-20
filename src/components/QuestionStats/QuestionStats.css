@@ -1,0 +1,10 @@
+.question-stats {
+  display: flex;
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .question-stats {
+    gap: 16px;
+  }
+}

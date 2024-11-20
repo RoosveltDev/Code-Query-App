@@ -1,0 +1,19 @@
+.answer-item {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 0;
+}
+
+.answer-content {
+  flex-grow: 1;
+}
+
+.answer-meta {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.answer-meta span {
+  color: #605bff;
+}

@@ -13,6 +13,9 @@ import Auth from "../pages/Auth/Auth"
 import LiveCoding from "../pages/LiveCoding/LiveCoding"
 import Pricing from "../pages/Pricing/Pricing"
 import CustomerPortal from "../pages/CustomerPortal/CustomerPortal"
+import CreateQuestion from "../pages/CreateQuestion/CreateQuestion";
+import QuestionDetail from "../pages/QuestionDetail/QuestionDetail";
+
 
 function Router(){
     
@@ -29,6 +32,8 @@ function Router(){
                 <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
                 <Route path="/pricing" element={<Pricing/>}></Route>
                 <Route path="/customerPortal" element={<CustomerPortal/>}></Route>
+                <Route path='/question' element={<QuestionDetail questionId={"1"}/>}></Route>
+               <Route path='/create' element={<CreateQuestion />}></Route>
               </Route>
               <Route element={<Public></Public>}>
                 <Route path="/login" element={<Session/>}></Route>
@@ -46,5 +51,6 @@ function Router(){
       
         </BrowserRouter>
     )
+
 }
-export default Router
+export default Router;
