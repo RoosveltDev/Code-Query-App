@@ -13,9 +13,13 @@ import Auth from "../pages/Auth/Auth"
 import LiveCoding from "../pages/LiveCoding/LiveCoding"
 import Pricing from "../pages/Pricing/Pricing"
 import CustomerPortal from "../pages/CustomerPortal/CustomerPortal"
+<<<<<<< HEAD
 import CreateQuestion from "../pages/CreateQuestion/CreateQuestion";
 import QuestionDetail from "../pages/QuestionDetail/QuestionDetail";
 
+=======
+import ClassroomsAdmin from "../pages/ClassroomAdmin/ClassroomsAdmin"
+>>>>>>> 2219d4df476bd4822e81f555269c7c7eaa2f4b56
 
 function Router(){
     
@@ -26,6 +30,7 @@ function Router(){
             <Routes>
             <Route element={<Private></Private>}>
                 <Route path="/dashboard" element={<Dashboard/>}></Route>
+                <Route path="/classrooms" element={<ClassroomsAdmin/>}></Route>
                 <Route path="/chat" element={<Chat/>}></Route>
                 <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
                 <Route path="/question/:id/live" element={<LiveCoding/>}></Route>

@@ -40,7 +40,6 @@ const CodingPanel = ({editorRef,running,questionId,setIsRunning}:CodingPanelType
       }, 0)
     })
     socket.on('incommingEditorChange',(value)=>{
-      console.log('incomming')
       changeRef.current = false
       editorRef.current?.setValue(value)
     })
