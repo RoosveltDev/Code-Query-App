@@ -13,13 +13,9 @@ import Auth from "../pages/Auth/Auth"
 import LiveCoding from "../pages/LiveCoding/LiveCoding"
 import Pricing from "../pages/Pricing/Pricing"
 import CustomerPortal from "../pages/CustomerPortal/CustomerPortal"
-<<<<<<< HEAD
 import CreateQuestion from "../pages/CreateQuestion/CreateQuestion";
 import QuestionDetail from "../pages/QuestionDetail/QuestionDetail";
-
-=======
 import ClassroomsAdmin from "../pages/ClassroomAdmin/ClassroomsAdmin"
->>>>>>> 2219d4df476bd4822e81f555269c7c7eaa2f4b56
 
 function Router(){
     
