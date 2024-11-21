@@ -19,8 +19,9 @@ export default function AnswerForm({
   setAnswer,
   className = "",
 }: AnswerFormProps) {
-  console.log(classRoomId)
+
   const [content, setContent] = useState("");
+  const [image,setImage] = useState<File|undefined>(undefined)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const controllerRef = useRef<AbortController | null>(null)
   const {user} = useUser()
@@ -38,7 +39,8 @@ export default function AnswerForm({
         controllerRef,
         setAnswer,
         classRoomId,
-        user
+        user,
+        image
       });
 
       setContent("");
@@ -49,7 +51,9 @@ export default function AnswerForm({
   };
 
   const handleImageUpload = async (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
+    setImage(file)
+    return URL.createObjectURL(file);
+   /*  return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (event) => {
         if (event.target && typeof event.target.result === "string") {
@@ -60,7 +64,7 @@ export default function AnswerForm({
       };
       reader.onerror = (error) => reject(error);
       reader.readAsDataURL(file);
-    });
+    }); */
   };
 
   return (

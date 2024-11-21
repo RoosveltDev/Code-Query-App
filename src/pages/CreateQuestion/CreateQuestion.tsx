@@ -12,7 +12,7 @@ import { handleSubmit } from "./handlers/handleCreateQuestion.handler";
 const CreateQuestion = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  /* const [image, setImage] = useState<File | null>(null); */
+  const [image, setImage] = useState<File | undefined>(undefined);
   const [tags, setTags] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,7 +23,7 @@ const CreateQuestion = () => {
 
 
   const handleImageUpload = async (file: File): Promise<string> => {
-   /*  setImage(file) */
+    setImage(file)
     return URL.createObjectURL(file);
   };
   useEffect(()=>{
@@ -39,7 +39,7 @@ const CreateQuestion = () => {
         Hacer una pregunta
       </h1>
       {error && <div className='error-message'>{error}</div>}
-      <form onSubmit={(e)=>handleSubmit(e,setIsSubmitting,setError,{classroom_id:classroom_id.toString(),title,body:content,tags:[1]},controllerRef)} className='question-form'>
+      <form onSubmit={(e)=>handleSubmit(e,setIsSubmitting,setError,{classroom_id:classroom_id.toString(),title,body:content,tags:[1,2],image},controllerRef)} className='question-form'>
         <div className='form-group'>
           <label htmlFor='question-title'>Título de la pregunta</label>
           <Input

@@ -4,7 +4,7 @@ const makeRequest = async (
   signal: AbortSignal,
   context: string,
   method: string,
-  data: { [id: string]: string | number | number[]},
+  data: { [id: string]: string | number | number[] | File} | FormData,
   hasCredentials: boolean,
   bodyFormat: "row" | "form-data" = "row"
 ) => {
@@ -30,7 +30,12 @@ const makeRequest = async (
   if (bodyFormat === 'form-data') {
     const formData = new FormData()
     Object.entries(data).forEach(([key, value]) => {
-      formData.append(key, value.toString())
+      if(Array.isArray(value)) {
+        value.forEach((element)=>{
+          formData.append(key, element)
+        })
+      }
+      else formData.append(key, value)
     })
     body = formData
   } else {

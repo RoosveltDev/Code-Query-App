@@ -8,7 +8,8 @@ interface SubmitAnswerParams {
   controllerRef:React.MutableRefObject<AbortController | null>;
   setAnswer:React.Dispatch<React.SetStateAction<Answer[] | null>>;
   classRoomId:string,
-  user:UserLogged
+  user:UserLogged;
+  image?:File
 }
 
 /* interface SubmitAnswerResult {
@@ -23,12 +24,15 @@ export const handleSubmitAnswer = async ({
   controllerRef,
   setAnswer,
   classRoomId,
-  user
+  user,
+  image
 }: SubmitAnswerParams): Promise<void> => {
-    
+    const body:{question_id:string,body:string,classroom_id:string,image?:File} = {question_id:questionId,body:content,classroom_id:classRoomId} 
+    console.log(image)
+    if(image) body.image = image
     controllerRef.current= new AbortController()
     const signal=controllerRef.current.signal
-    const {status,results} = await makeRequest(signal,'answers','POST',{question_id:questionId,body:content,classroom_id:classRoomId},true)
+    const {status,results} = await makeRequest(signal,'answers','POST',body,true,'form-data')
     if(status===201){
       setAnswer(prev => {
         if(!prev) return [{...results,user:{name:user.name,avatar:user.avatar}} ]

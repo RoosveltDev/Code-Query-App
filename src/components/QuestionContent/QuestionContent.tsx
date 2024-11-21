@@ -59,6 +59,8 @@ export default function QuestionContent({
           className='question-text'
           dangerouslySetInnerHTML={{ __html: question.body }}
         />
+        {<img className="question-image" src={question.image} alt="question-img" />}
+
       </div>
     </div>
   );

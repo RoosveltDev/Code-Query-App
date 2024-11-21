@@ -1,13 +1,13 @@
 import makeRequest from "../../../services/api.service";
 
-
+type FormBodyType = {classroom_id:string,title:string,body:string,tags:number[],image?:File|undefined}
 
 
 export const handleSubmit= async (
   e: React.FormEvent,
   setIsSubmitting:React.Dispatch<React.SetStateAction<boolean>>,
   setError:React.Dispatch<React.SetStateAction<string | null>>,
-  body:{classroom_id:string,title:string,body:string,tags:number[]},
+  body:FormBodyType,
   controllerRef: React.MutableRefObject<AbortController | null>,
   
 ) => {
@@ -16,11 +16,11 @@ export const handleSubmit= async (
   setError(null);
 
   try {
-    //Logica de la api
+    if(!body.image) delete body.image
     controllerRef.current = new AbortController()
     const signal = controllerRef.current.signal
     const {status} = await makeRequest(signal,'questions','POST',body,true,"form-data")
-    console.log(status)
+    if (status!== 201) throw new Error()
 
   } catch (err) {
     setError(
