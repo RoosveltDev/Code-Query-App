@@ -1,4 +1,3 @@
-import VoteButton from "../voteButton/VoteButton";
 import "./AnswerItem.css";
 
 interface AnswerItemProps {
@@ -14,7 +13,6 @@ interface AnswerItemProps {
 const AnswerItem = ({ answer }: AnswerItemProps) => {
   return (
     <div className='answer-item'>
-      <VoteButton votes={answer.votes} />
       <div className='answer-content'>
         <div dangerouslySetInnerHTML={{ __html: answer.body }} />
         <div className='answer-meta'>

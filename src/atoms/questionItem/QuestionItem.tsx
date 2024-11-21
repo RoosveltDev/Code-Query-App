@@ -1,4 +1,3 @@
-import VoteButton from "../voteButton/VoteButton";
 import "./QuestionItem.css";
 
 interface QuestionItemProps {
@@ -16,7 +15,6 @@ interface QuestionItemProps {
 const QuestionItem = ({ question }: QuestionItemProps) => {
   return (
     <div className='question-item'>
-      <VoteButton votes={question.votes} />
       <div className='question-summary'>
         <h3>
           <a href={`/question/${question.id}`}>{question.title}</a>

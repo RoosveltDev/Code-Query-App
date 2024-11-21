@@ -30,6 +30,10 @@
   line-height: 1;
 }
 
+.tag-input-wrapper {
+  position: relative;
+}
+
 .tag-input {
   padding: 8px;
   border: 1px solid #ccc;
@@ -41,4 +45,32 @@
 .tag-input:focus {
   outline: none;
   border-color: #0077cc;
+}
+
+.tag-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tag-dropdown li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.tag-dropdown li:hover,
+.tag-dropdown li:focus {
+  background-color: #f0f0f0;
+  outline: none;
 }

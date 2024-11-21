@@ -1,52 +1,19 @@
-/* import { useState } from "react"; */
 import { FaComment } from "react-icons/fa";
 import AuthorInfo from "../AuthorInfo/AuthorInfo";
-/* import VoteButton from "../../atoms/voteButton/VoteButton"; */
 import Button from "../../atoms/button/Button";
 import Badge from "../../atoms/badge/Badge";
 import "./AnswerCard.css";
 import { Answer } from "../../types/answer/answer.types";
-import profile from '../../assets/avatar.svg'
-/* interface AnswerCardProps {
-  id: string;
-  content: string;
-  author: {
-    name: string;
-    avatar: string;
-    location: string;
-    timeAgo: string;
-  };
-  votes: number;
-  isBestAnswer?: boolean;
-  onComment?: () => void;
-  questionId: string;
-  className?: string;
-} */
+import profile from "../../assets/avatar.svg";
 
 export default function AnswerCard({
-  
   body,
   user,
+  created_at,
   is_accepted,
-  /* votes: initialVotes, */
-  /* isBestAnswer, */
   onComment,
-  /* questionId, */
   className = "",
-}: Answer & {className?:string,onComment?:()=>void}) {
- /*  const [voteCount, setVoteCount] = useState(initialVotes);
-  const [voteStatus, setVoteStatus] = useState<"up" | "down" | null>(null);
-
-  const handleVote = (direction: "up" | "down", isActive: boolean) => {
-    if (isActive) {
-      setVoteStatus(direction);
-      setVoteCount((prevCount) => prevCount + (direction === "up" ? 1 : -1));
-    } else {
-      setVoteStatus(null);
-      setVoteCount((prevCount) => prevCount + (direction === "up" ? -1 : 1));
-    }
-  }; */
-
+}: Answer & { className?: string; onComment?: () => void }) {
   return (
     <div className={`answer-card ${className}`}>
       {is_accepted && (
@@ -58,29 +25,10 @@ export default function AnswerCard({
       <div className='answer-content'>
         <AuthorInfo
           name={user.name}
-          avatar={user.avatar? user.avatar:profile}
-          /* location={user.location}
-          timeAgo={user.timeAgo} */
+          avatar={user.avatar ? user.avatar : profile}
+          timeAgo={created_at}
         />
         <div className='answer-body'>
-          <div className='vote-buttons'>
-          {/*   <VoteButton
-              direction='up'
-              count={voteCount}
-              isActive={voteStatus === "up"}
-              questionId={questionId}
-              answerId={id}
-              onVote={handleVote}
-            />
-            <VoteButton
-              direction='down'
-              count={voteCount}
-              isActive={voteStatus === "down"}
-              questionId={questionId}
-              answerId={id}
-              onVote={handleVote}
-            /> */}
-          </div>
           <div
             className='answer-text'
             dangerouslySetInnerHTML={{ __html: body }}

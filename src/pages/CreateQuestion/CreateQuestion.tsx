@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
 import Button from "../../atoms/button/Button";
 import Input from "../../atoms/input/Input";
@@ -8,7 +8,6 @@ import "./CreateQuestion.css";
 import { useParams } from "react-router-dom";
 import { handleSubmit } from "./handlers/handleCreateQuestion.handler";
 
-
 const CreateQuestion = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -16,21 +15,33 @@ const CreateQuestion = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const availableTags = [
+    "JavaScript",
+    "React",
+    "Node.js",
+    "TypeScript",
+    "CSS",
+    "HTML",
+    "Express",
+    "MongoDB",
+    "SQL",
+    "Python",
+  ];
   const { id } = useParams();
-  const classroom_id = id as string
+  const classroom_id = id as string;
 
-  const controllerRef = useRef<AbortController | null>(null)
-
+  const controllerRef = useRef<AbortController | null>(null);
 
   const handleImageUpload = async (file: File): Promise<string> => {
-    setImage(file)
+    setImage(file);
     return URL.createObjectURL(file);
   };
-  useEffect(()=>{
-    return()=> {
-      controllerRef.current?.abort()
-    }
-  },[])
+  useEffect(() => {
+    controllerRef.current = new AbortController();
+    return () => {
+      controllerRef.current?.abort();
+    };
+  }, []);
 
   return (
     <div className='create-question'>
@@ -39,15 +50,30 @@ const CreateQuestion = () => {
         Hacer una pregunta
       </h1>
       {error && <div className='error-message'>{error}</div>}
-      <form onSubmit={(e)=>handleSubmit(e,setIsSubmitting,setError,{classroom_id:classroom_id.toString(),title,body:content,tags:[1,2],image},controllerRef)} className='question-form'>
+      <form
+        onSubmit={(e) =>
+          handleSubmit(
+            e,
+            setIsSubmitting,
+            setError,
+            {
+              classroom_id: classroom_id.toString(),
+              title,
+              body: content,
+              tags: [1, 2],
+              image,
+            },
+            controllerRef
+          )
+        }
+        className='question-form'
+      >
         <div className='form-group'>
           <label htmlFor='question-title'>Título de la pregunta</label>
           <Input
-            
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder='¿Cuál es tu pregunta?'
-            
           />
         </div>
         <div className='form-group'>
@@ -61,7 +87,11 @@ const CreateQuestion = () => {
         </div>
         <div className='form-group'>
           <label htmlFor='question-tags'>Etiquetas</label>
-          <TagInput tags={tags} onTagsChange={setTags} />
+          <TagInput
+            tags={tags}
+            onTagsChange={setTags}
+            availableTags={availableTags}
+          />
         </div>
         <Button
           type='submit'

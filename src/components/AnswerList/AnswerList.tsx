@@ -1,5 +1,4 @@
 import AnswerCard from "../AnswerCard/AnswerCard";
-import { sortAnswers } from "./handlers/handleAnswers.handler";
 import { Answer } from "../../types/answer/answer.types";
 import "./AnswerList.css";
 
@@ -12,9 +11,9 @@ export default function AnswerList({
   answers,
   className = "",
 }: AnswerListProps) {
-  console.log(answers)
-  answers = answers ? answers : []
-  const sortedAnswers = answers
+  console.log(answers);
+  answers = answers ? answers : [];
+  const sortedAnswers = answers;
 
   return (
     <div className={`answer-list ${className}`}>
@@ -27,7 +26,6 @@ export default function AnswerList({
             id={answer.id}
             body={answer.body}
             user={answer.user}
-            /* votes={answer.votes} */
             is_accepted={answer.is_accepted}
             classroom_id={answer.classroom_id}
             created_at={answer.created_at}
