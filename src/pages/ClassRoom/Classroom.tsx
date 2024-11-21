@@ -53,7 +53,7 @@ const ClassRoom: React.FC = () => {
         <Button buttonText='Add Students'></Button>
         <hr />
         <h2>
-        <MdChecklist /> listado de Cursos
+        <MdChecklist /> Course List
         </h2>
         <p>
           <ol className='li-classroom'>
@@ -64,10 +64,10 @@ const ClassRoom: React.FC = () => {
         </p>
         <hr/>
         <h3>
-         <IoPersonAddSharp /> Listado de Estudiantes
+         <IoPersonAddSharp /> Student List
         </h3>
         <p>
-          {dataStudents?.length} student
+          {dataStudents?.length} students
         </p>
         </div>
       </section>
