@@ -16,16 +16,16 @@ const CreateQuestion = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const availableTags = [
-    "JavaScript",
-    "React",
-    "Node.js",
-    "TypeScript",
-    "CSS",
     "HTML",
-    "Express",
-    "MongoDB",
-    "SQL",
-    "Python",
+    "CSS",
+    "JS",
+    "REACT",
+    "POSTGRES",
+    "NODEJS",
+    "CODING",
+    "PYTHON",
+    "TYPESCRIPT",
+    "MONGODB",
   ];
   const { id } = useParams();
   const classroom_id = id as string;
@@ -60,7 +60,7 @@ const CreateQuestion = () => {
               classroom_id: classroom_id.toString(),
               title,
               body: content,
-              tags: [1, 2],
+              tags: tags.map(tag => availableTags.findIndex(availableTag => availableTag === tag) + 1),
               image,
             },
             controllerRef

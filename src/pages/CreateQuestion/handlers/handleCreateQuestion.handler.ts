@@ -16,6 +16,7 @@ export const handleSubmit= async (
   setError(null);
 
   try {
+
     if(!body.image) delete body.image
     controllerRef.current = new AbortController()
     const signal = controllerRef.current.signal
