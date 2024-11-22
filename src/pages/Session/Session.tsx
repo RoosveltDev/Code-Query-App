@@ -54,14 +54,14 @@ const Session = () => {
                 ? <div className="form-container__options options-recover">
                 <div className="options-recover__remember remember-container">
 
-                  <input className="remember-container__input"  type="checkbox" name="remember" />
+                  <input className="remember-container__input"  type="checkbox" name="remember"  aria-label="Remember Me"/>
                   <p className="remember-container__text">Remember Me</p>
                 </div>
                 <Link to="/recover" className="options-recover__forgot">Forgot Password?</Link>
               
               </div>
               : <div className="options-recover__remember remember-container">
-                <input className="remember-container__input"  type="checkbox" name="remember" />
+                <input className="remember-container__input"  type="checkbox" name="remember"  aria-label="terminos"/>
                 <p>By creating an account you agree to the <span className="remember-container__span">terms of use</span > and our <span className="remember-container__span">privacy policy.</span></p>
               </div>
               }

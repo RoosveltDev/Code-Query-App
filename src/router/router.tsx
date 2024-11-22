@@ -16,7 +16,7 @@ import CustomerPortal from "../pages/CustomerPortal/CustomerPortal"
 import CreateQuestion from "../pages/CreateQuestion/CreateQuestion";
 import QuestionDetail from "../pages/QuestionDetail/QuestionDetail";
 import ClassroomsAdmin from "../pages/ClassroomAdmin/ClassroomsAdmin"
-
+import ClassRoom from "../pages/ClassRoom/Classroom"
 function Router(){
     
     return(
@@ -34,8 +34,8 @@ function Router(){
                 <Route path="/pricing" element={<Pricing/>}></Route>
                 <Route path="/customerPortal" element={<CustomerPortal/>}></Route>
                 <Route path='/classroom/:id/question/:questionId/answers' element={<QuestionDetail/>}></Route>
-               <Route path='/classroom/:id/question/create' element={<CreateQuestion />}></Route>
-               
+                <Route path='/classroom/:id/question/create' element={<CreateQuestion />}></Route>
+                <Route path="/classroom/:id" element={<ClassRoom/>}></Route>
               </Route>
               <Route element={<Public></Public>}>
                 <Route path="/login" element={<Session/>}></Route>

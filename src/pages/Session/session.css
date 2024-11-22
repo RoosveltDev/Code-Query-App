@@ -54,6 +54,7 @@
 }
 .login-container__header{
     color: var(--color-secondary);
+    font-family: var(--font-h1);
     font-size: 25px;
     font-weight: 600;
     margin: 15px 0px;
@@ -69,8 +70,8 @@
     width: 152px;
     height: 50px;
     align-items: center;
-    background-color: #F7F7F8;
-    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    color: var(--color-terciary);
     border: none;
     border-radius: 10px;
 }
@@ -86,13 +87,13 @@
   .divider::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--color-primary);
     margin: 0 10px;
   }
   
   .divider span {
     font-size: 14px;
-    color: #555;
+    color: var(--color-secundary);
   }
 
   .form-container__options{
@@ -108,9 +109,10 @@
   }
   .remember-container__span,
   .options-recover__forgot{
-    color: #605BFF;
+    color: var(--color-primary);
     text-decoration: none;
     cursor: pointer;
+    font-size: .75rem;
   }
   .session-footer__link{
     color: #605BFF;

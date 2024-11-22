@@ -15,10 +15,12 @@ const useFetch = <T,>({fetchOptions}:FetchType):[T | null, React.Dispatch<React.
         const {results,status} = await makeRequest(signal,context,method,data,hasCredentials,bodyFormat)
         console.log(status)
         setData(results.results ? results.results:results)
+
     }
     catch(error){
         console.log("Error from useFetch"+ error)
     }
+
       
    }
    useEffect(()=>{
