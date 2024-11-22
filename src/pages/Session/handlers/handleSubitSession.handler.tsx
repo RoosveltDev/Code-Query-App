@@ -19,6 +19,7 @@ export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,control
     const validatedSchema = validateInputs<Omit<User, 'id'>,UserLogin>( userObject,userSchema)
     if(validatedSchema) {
         const signal = controlSignal.signal
+        console.log(userObject)
         const {results,status} = await makeRequest(signal,"auth/signIn","POST",userObject,false)
         if(status===200){
             /* TODO: HANDLE RESPONSE */

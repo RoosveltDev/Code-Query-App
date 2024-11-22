@@ -1,9 +1,41 @@
-import "./button.css"
+import "./Button.css";
 
-const Button = ({buttonText,classText}:{buttonText:string,classText?:string}) => {
-  return (
-    <button className={!classText?"btn-submit":`btn-submit ${classText}`}>{buttonText}</button>
-  )
+interface ButtonProps {
+  children?: React.ReactNode;
+  buttonText?: string;
+  variant?: "primary" | "secondary" | "ghost";
+  size?: "small" | "medium" | "large";
+  className?: string;
+  onClick?: () => void;
+  type?: "button" | "submit";
+  disabled?: boolean;
+  classText?: string;
 }
 
-export default Button
+export default function Button({
+  children,
+  buttonText,
+  variant = "primary",
+  size = "medium",
+  className = "",
+  onClick,
+  type = "button",
+  disabled = false,
+  classText,
+}: ButtonProps) {
+  const content = buttonText || children;
+  const finalClassName = classText
+    ? `btn-submit ${classText}`
+    : `button button-${variant} button-${size} ${className}`;
+
+  return (
+    <button
+      type={type}
+      className={finalClassName}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {content}
+    </button>
+  );
+}

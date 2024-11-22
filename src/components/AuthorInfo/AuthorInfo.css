@@ -1,0 +1,30 @@
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.author-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.author-location::after {
+  content: "•";
+  margin-left: 8px;
+}

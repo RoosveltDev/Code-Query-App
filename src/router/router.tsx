@@ -11,9 +11,12 @@ import Private from "../guard/Private"
 import Public from "../guard/Public"
 import Auth from "../pages/Auth/Auth"
 import LiveCoding from "../pages/LiveCoding/LiveCoding"
+import Pricing from "../pages/Pricing/Pricing"
+import CustomerPortal from "../pages/CustomerPortal/CustomerPortal"
+import CreateQuestion from "../pages/CreateQuestion/CreateQuestion";
+import QuestionDetail from "../pages/QuestionDetail/QuestionDetail";
+import ClassroomsAdmin from "../pages/ClassroomAdmin/ClassroomsAdmin"
 import ClassRoom from "../pages/ClassRoom/Classroom"
-
-
 function Router(){
     
     return(
@@ -23,12 +26,16 @@ function Router(){
             <Routes>
             <Route element={<Private></Private>}>
                 <Route path="/dashboard" element={<Dashboard/>}></Route>
+                <Route path="/classrooms" element={<ClassroomsAdmin/>}></Route>
                 <Route path="/chat" element={<Chat/>}></Route>
                 <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
                 <Route path="/question/:id/live" element={<LiveCoding/>}></Route>
                 <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
-                <Route path="/classroom/:id" element={<ClassRoom/>}></Route> 
-                {/* crear el componente  de clasrroom id*/}
+                <Route path="/pricing" element={<Pricing/>}></Route>
+                <Route path="/customerPortal" element={<CustomerPortal/>}></Route>
+                <Route path='/classroom/:id/question/:questionId/answers' element={<QuestionDetail/>}></Route>
+                <Route path='/classroom/:id/question/create' element={<CreateQuestion />}></Route>
+                <Route path="/classroom/:id" element={<ClassRoom/>}></Route>
               </Route>
               <Route element={<Public></Public>}>
                 <Route path="/login" element={<Session/>}></Route>
@@ -46,5 +53,6 @@ function Router(){
       
         </BrowserRouter>
     )
+
 }
-export default Router
+export default Router;
