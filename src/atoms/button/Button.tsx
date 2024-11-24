@@ -1,4 +1,4 @@
-import "./Button.css";
+import "./button.css";
 
 interface ButtonProps {
   children?: React.ReactNode;
