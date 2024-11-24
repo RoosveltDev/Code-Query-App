@@ -1,6 +1,6 @@
 // src/components/Menu/Header.tsx
 import React, { useState } from 'react';
-import './Header.css';
+import './header.css';
 import Hamburger from './hambuger';
 
 const Header: React.FC = () => {
