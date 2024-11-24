@@ -30,7 +30,7 @@ const Confirm = () => {
       </figure>
        
         <p>Your account successfully created.</p>
-        <Link className="btn-submit confirm-container-main__link"  to={"login"}>Go to Login</Link>
+        <Link className="btn-submit confirm-container-main__link"  to={"/login"}>Go to Login</Link>
     </div>
     
   </div>

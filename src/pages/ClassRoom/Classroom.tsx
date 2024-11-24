@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../../hook/useFetch';
 import avatar from '../../assets/avatar.svg';
 import './Classroom.css';
@@ -15,6 +15,7 @@ import { MdChecklist } from "react-icons/md";
 
 const ClassRoom: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const navigator = useNavigate()
   // const [data, setData]
   const [data] = useFetch<Comment[]>({
     fetchOptions: {
@@ -50,7 +51,10 @@ const ClassRoom: React.FC = () => {
       <section  className="classroom-seccion">
         <div className="classroom-header">
         <h1> <SiGoogleclassroom /> Classroom</h1>
+        <div onClick={()=>navigator(`/classroom/${id}/student`)}>
+
         <Button buttonText='Add Students'></Button>
+        </div>
         <hr />
         <h2>
         <MdChecklist /> Course List
@@ -95,10 +99,12 @@ const ClassRoom: React.FC = () => {
           </div>
           
           <div className="card-footer">
+            <div onClick={()=>navigator(`/classroom/${id}/question/${comment.id}/answers`)}>
+
             <Button buttonText="Responder" 
-            // onClick={() =>
-            //   { /* Lógica para responder */ }}
+           
             />
+            </div>
           </div>
         </Card>
       ))}
