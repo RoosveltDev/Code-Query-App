@@ -1,4 +1,4 @@
-import "./Avatar.css";
+import "./avatar.css";
 import defaultAvatar from "../../assets/avatar.svg";
 
 interface AvatarProps {

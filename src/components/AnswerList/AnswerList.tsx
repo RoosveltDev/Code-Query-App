@@ -11,7 +11,6 @@ export default function AnswerList({
   answers,
   className = "",
 }: AnswerListProps) {
-  console.log(answers);
   answers = answers ? answers : [];
   const sortedAnswers = answers;
 
