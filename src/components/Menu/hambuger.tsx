@@ -25,7 +25,7 @@ const HamburgerComponent: React.FC = () => {
                 <li>
                   <Link to={"dashboard"}>
                     {" "}
-                    <FaChalkboard /> dashboard
+                    <FaChalkboard /> Dashboard
                   </Link>
                 </li>
                 <li>
@@ -35,17 +35,17 @@ const HamburgerComponent: React.FC = () => {
                 </li>
                 <li>
                   <Link to={"chat"}>
-                    <FaComments /> chat
+                    <FaComments /> Chat
                   </Link>
                 </li>
                 <li>
                   <Link to={"customerPortal"}>
-                    <AiOutlineCreditCard /> billing
+                    <AiOutlineCreditCard /> Billing
                   </Link>
                 </li>
                 <li>
                   <div onClick={()=>handleLogout(navigate,removeUser)} className="hamburger-list__logout">
-                    <LuLogOut /> loguot
+                    <LuLogOut /> Loguot
                   </div>
                 </li>
               </ul>

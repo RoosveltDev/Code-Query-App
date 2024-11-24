@@ -1,4 +1,3 @@
-// src/components/Menu/Header.tsx
 import React, { useState } from 'react';
 import './header.css';
 import Hamburger from './hambuger';
