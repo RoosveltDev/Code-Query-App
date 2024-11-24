@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { InputType } from "../../types/input.type";
 import { labelAnimation } from "./animations/label.animation";
 import { passwordEyeClicked } from "./animations/password.animation";
-import "./Input.css";
+import "./input.css";
 
 interface ModernInputProps {
   type?: "text" | "search" | "email" | "password";

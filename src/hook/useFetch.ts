@@ -12,8 +12,7 @@ const useFetch = <T,>({fetchOptions}:FetchType):[T | null, React.Dispatch<React.
         controllerRef.current = new AbortController()
         const signal = controllerRef.current.signal
         const {context,method,data,hasCredentials,bodyFormat} =fetchOptions
-        const {results,status} = await makeRequest(signal,context,method,data,hasCredentials,bodyFormat)
-        console.log(status)
+        const {results} = await makeRequest(signal,context,method,data,hasCredentials,bodyFormat)
         setData(results.results ? results.results:results)
 
     }

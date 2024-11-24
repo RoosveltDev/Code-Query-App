@@ -28,7 +28,6 @@ export const handleSubmitAnswer = async ({
   image
 }: SubmitAnswerParams): Promise<void> => {
     const body:{question_id:string,body:string,classroom_id:string,image?:File} = {question_id:questionId,body:content,classroom_id:classRoomId} 
-    console.log(image)
     if(image) body.image = image
     controllerRef.current= new AbortController()
     const signal=controllerRef.current.signal

@@ -1,4 +1,3 @@
-import Button from "../../atoms/button/Button";
 import { FaChevronCircleRight } from "react-icons/fa";
 import "./dashboard.css";
 import { Line } from "react-chartjs-2";
@@ -142,15 +141,6 @@ const Dashboard = () => {
               );
             })}
         </select>
-        {/* <select className="dashboard-header-container__select" onChange={(e)=>handleSelectDashboard(e,setIndexSelected)} name="Classrooms" id="classroom-select-box">
-                    {data && data?.map((element,index)=>{
-                        return <option key={`option${element.id}`} value={index}>{element.classroom_name}</option>
-                    })}
-                </select> */}
-        <Button
-          classText="dashboard-header-container__button"
-          buttonText="Add Classroom"
-        ></Button>
       </div>
       <div className="dashboard-main-container__charts charts-container">
         <div className="charts-container__activity-posts">
