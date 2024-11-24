@@ -2,8 +2,7 @@ import "./ClassroomsAdmin.css";
 import useFetch from "../../hook/useFetch";
 import { FetchedClassroomsAdmin } from "../../types/classroom/fetchedClassroomsAdmin";
 import { useRef, useState } from "react";
-import editIcon from "../../assets/edit.svg"; // Asegúrate de tener este ícono
-import deleteIcon from "../../assets/Delete.svg"; // Asegúrate de tener este ícono
+import deleteIcon from "../../assets/Delete.svg"; 
 import { handleClickMore } from "./handlers/handleClickMore.handler";
 import CardList from "../../components/CardList/CardList";
 import PopUp from "../../components/PopUp/PopUp";
@@ -37,12 +36,6 @@ const ClassroomsAdmin = () => {
       setEditingClassroom(null);
     }
     setIsPopupVisible(true);
-  };
-
-  // const handleClosePopup = () => setIsPopupVisible(false);
-
-  const handleEdit = (classroom: FetchedClassroomsAdmin) => {
-    handleOpenPopup(classroom);
   };
 
   const handleDelete = async (id: string) => {
@@ -91,12 +84,6 @@ const ClassroomsAdmin = () => {
                         {element.description}
                       </p>,
                       <div className="classroom-card-container__actions">
-                        {/* <img
-                          src={editIcon}
-                          alt="Edit"
-                          className="action-icon"
-                          onClick={() => handleEdit(element)}
-                        /> */}
                         <img
                           src={deleteIcon}
                           alt="Delete"
