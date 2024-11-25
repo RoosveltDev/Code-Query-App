@@ -15,7 +15,7 @@
     padding: 1rem;
     background-color: #fff;
     box-shadow: 0 4px 6px #0000001a;
-    width: calc(33.333% - 1rem);
+    width: calc((100% / 3) - 1rem);
     width: 100%;
     min-width: 250px; 
     margin-bottom: 1rem;
@@ -107,7 +107,7 @@
   }
 
   .classroom-card {
-    width: calc(33.333% - 1rem);
+    width: calc((100% / 3) - 1rem);
   }
 
   .classroom-seccion {
