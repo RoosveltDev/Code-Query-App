@@ -55,6 +55,9 @@ const ClassRoom: React.FC = () => {
 
         <Button buttonText='Add Students'></Button>
         </div>
+        <div onClick={()=>navigator(`classroom/${id}/question/create`)}>
+        <Button buttonText='Add Question'></Button>
+        </div>
         <hr />
         <h2>
         <MdChecklist /> Course List
@@ -76,6 +79,7 @@ const ClassRoom: React.FC = () => {
         </div>
       </section>
 
+      <section className='classroom-seccion-body'>
       {data&&data.length>0&&data.map((comment) => (
         <Card key={comment.id} className="classroom-card">
           <div className='classroom-body'>
@@ -108,6 +112,8 @@ const ClassRoom: React.FC = () => {
           </div>
         </Card>
       ))}
+      </section>
+
     </div>
   );
 };
