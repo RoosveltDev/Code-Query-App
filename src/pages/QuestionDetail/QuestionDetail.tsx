@@ -45,7 +45,7 @@ export const QuestionDetail = () => {
             <QuestionContent question={questionDataFetch} />
           )}
 
-          {answerDataFetch && <AnswerList questionId={questionId!}  answers={answerDataFetch} />}
+          {answerDataFetch && <AnswerList ownerId={questionDataFetch?.user.id as number} questionId={questionId!}  answers={answerDataFetch} />}
 
           <AnswerForm
             questionId={questionId!}
