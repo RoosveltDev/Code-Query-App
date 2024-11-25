@@ -85,6 +85,7 @@
 .classroom-card-container__actions {
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 .action-icon {
   width: 20px;

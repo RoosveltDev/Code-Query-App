@@ -19,10 +19,15 @@
 }
 .classroom-card-container__element{
     width: calc((100% - 116px)/4);
-    text-align: center;
+    text-align:center;
     font-size: 10px;
-    display: flex;
-    justify-content: center;
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    padding:5px;
+    box-sizing:border-box;
 
 }
 .classroom-card-container__link{
