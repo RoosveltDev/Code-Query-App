@@ -19,7 +19,7 @@ const ClassRoom: React.FC = () => {
   // const [data, setData]
   const [data] = useFetch<Comment[]>({
     fetchOptions: {
-      context: `questions/classroom/${id}?page=1&per_page=8`,
+      context: `questions/classroom/${id}?page=1&per_page=20`,
       method: 'GET',
       data: {},
       hasCredentials: true,
@@ -55,7 +55,7 @@ const ClassRoom: React.FC = () => {
 
         <Button buttonText='Add Students'></Button>
         </div>
-        <div onClick={()=>navigator(`classroom/${id}/question/create`)}>
+        <div onClick={()=>navigator(`/classroom/${id}/question/create`)}>
         <Button buttonText='Add Question'></Button>
         </div>
         <hr />

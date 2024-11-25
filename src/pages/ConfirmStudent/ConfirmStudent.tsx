@@ -29,7 +29,7 @@ const ConfirmStudent = () => {
             </div>
             <h2 className='invitation-student-container__h2'><span className='invitation-student-container__name'>{name}</span> invited you to its classroom</h2>
             <div className='invitation-student-container__actions actions-invitation-container'>
-                <button onClick={()=>handleClickAccept(token,controllerRef,navigate)} className='actions-invitation-container__button invitation-button-confirm--accept'>Accept Invitation</button>
+                <button onClick={()=>handleClickAccept(token,controllerRef,navigate,classroomId)} className='actions-invitation-container__button invitation-button-confirm--accept'>Accept Invitation</button>
                 <button onClick={()=>handleClickDecline(controllerRef,navigate,classroomId,String(user.id))} className='actions-invitation-container__button invitation-button-confirm--decline'> Decline</button>
 
             </div>
