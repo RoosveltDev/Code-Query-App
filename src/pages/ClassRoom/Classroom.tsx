@@ -55,6 +55,9 @@ const ClassRoom: React.FC = () => {
 
         <Button buttonText='Add Students'></Button>
         </div>
+        <div onClick={()=>navigator(`classroom/${id}/question/create`)}>
+        <Button buttonText='Add Question'></Button>
+        </div>
         <hr />
         <h2>
         <MdChecklist /> Course List
