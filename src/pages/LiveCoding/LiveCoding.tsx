@@ -7,11 +7,11 @@ import { handleRunCode } from './handlers/handleRunCode.handler';
 import LiveCodingPanel from '../../components/LiveCodingPanel/LiveCodingPanel';
 
 const LiveCoding = () => {
-    const { id } = useParams();
+    const { questionId,answerId } = useParams();
     const navigate = useNavigate()
     const [ running, setIsRunning] = useState<boolean>(false)
     useEffect(()=>{
-        if(!id || Number.isNaN(Number(id))) navigate('/dashboard')
+        if((!questionId || Number.isNaN(Number(questionId))) ||(!answerId || Number.isNaN(Number(answerId))) ) navigate('/dashboard')
     },[])
   return (
 
@@ -36,7 +36,7 @@ const LiveCoding = () => {
         </button>
        
       </div>
-      <LiveCodingPanel questionId={id!} running={running} setIsRunning={setIsRunning}></LiveCodingPanel>
+      <LiveCodingPanel answerId={answerId!} questionId={questionId!} running={running} setIsRunning={setIsRunning}></LiveCodingPanel>
      
     </div>
   )

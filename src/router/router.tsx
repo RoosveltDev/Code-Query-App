@@ -29,7 +29,7 @@ function Router(){
                 <Route path="/classrooms" element={<ClassroomsAdmin/>}></Route>
                 <Route path="/chat" element={<Chat/>}></Route>
                 <Route path="/confirmClassroom" element={<ConfirmStudent/>}></Route>
-                <Route path="/question/:id/live" element={<LiveCoding/>}></Route>
+                <Route path="/question/:questionId/answer/:answerId/live" element={<LiveCoding/>}></Route>
                 <Route path="/classroom/:id/student" element={<ClassRoomStudents/>}></Route>
                 <Route path="/pricing" element={<Pricing/>}></Route>
                 <Route path="/customerPortal" element={<CustomerPortal/>}></Route>

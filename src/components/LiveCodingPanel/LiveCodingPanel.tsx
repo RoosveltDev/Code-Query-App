@@ -5,13 +5,13 @@ import CodingPanel from '../CodingPanel/CodingPanel'
 import { useRef } from 'react'
 import { LiveCodingPanelType } from '../../types/liveCoding/liveCodingPanel.type'
 
-const LiveCodingPanel = ({running,setIsRunning,questionId}:LiveCodingPanelType) => {
+const LiveCodingPanel = ({running,setIsRunning,questionId,answerId}:LiveCodingPanelType) => {
     const editorRef = useRef<editor.IStandaloneCodeEditor|null>(null)
    
   return (
     <div className='live-main-container__layout'>
       <div className='live-main-container__description-question'>
-        <CodingDescription></CodingDescription>
+        <CodingDescription questionId={questionId} answerId={answerId!}></CodingDescription>
       </div>
       <div className='live-main-container__coding-panel'>
       

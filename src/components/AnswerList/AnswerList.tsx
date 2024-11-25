@@ -5,9 +5,11 @@ import "./AnswerList.css";
 interface AnswerListProps {
   answers: Answer[];
   className?: string;
+  questionId:string
 }
 
 export default function AnswerList({
+  questionId,
   answers,
   className = "",
 }: AnswerListProps) {
@@ -22,6 +24,7 @@ export default function AnswerList({
       <div className='answer-list-content'>
         {sortedAnswers.map((answer) => (
           <AnswerCard
+      
             id={answer.id}
             body={answer.body}
             user={answer.user}
@@ -29,6 +32,7 @@ export default function AnswerList({
             is_accepted={answer.is_accepted}
             classroom_id={answer.classroom_id}
             created_at={answer.created_at}
+            questionId = {questionId}
           />
         ))}
       </div>
