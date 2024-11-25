@@ -47,7 +47,7 @@ const CreateQuestion = () => {
     <div className='create-question'>
       <h1 className='create-question-title'>
         <FaQuestionCircle className='question-icon' />
-        Hacer una pregunta
+        Ask a question
       </h1>
       {error && <div className='error-message'>{error}</div>}
       <form
@@ -69,24 +69,24 @@ const CreateQuestion = () => {
         className='question-form'
       >
         <div className='form-group'>
-          <label htmlFor='question-title'>Título de la pregunta</label>
+          <label htmlFor='question-title'>Title of the question</label>
           <Input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder='¿Cuál es tu pregunta?'
+            placeholder='What is your question?'
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='question-content'>Detalles de la pregunta</label>
+          <label htmlFor='question-content'>Details of the question</label>
           <RichTextEditor
             value={content}
             onChange={setContent}
-            placeholder='Proporciona más detalles sobre tu pregunta...'
+            placeholder='Please provide more details about your question...'
             onImageUpload={handleImageUpload}
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='question-tags'>Etiquetas</label>
+          <label htmlFor='question-tags'>Tags</label>
           <TagInput
             tags={tags}
             onTagsChange={setTags}
@@ -99,7 +99,7 @@ const CreateQuestion = () => {
           size='large'
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Publicando..." : "Publicar pregunta"}
+          {isSubmitting ? "Publishing..." : "Publish a question"}
         </Button>
       </form>
     </div>
