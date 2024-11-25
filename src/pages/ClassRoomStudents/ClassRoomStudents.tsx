@@ -32,7 +32,8 @@ const ClassRoomStudents = () => {
   }})
   const clickHandler= isMobile? handleClickCardProfileMobile : handleClickCardProfile
   useEffect(()=>{
-    if(data) setUserClicked(data[0].user)
+    
+    if(data && data.length>0) setUserClicked(data[0].user)
     return()=>{
       controllerRef.current?.abort()
     }
@@ -73,8 +74,8 @@ const ClassRoomStudents = () => {
         {
               (!isMobile || (isClickedInformation && isMobile) ) && <div className="container-card-profile-students">
                {userClicked  ? <CardProfile classroom_id={id!} userData={userClicked!} ></CardProfile>: 
-                  <div>
-                    <p>No hay estudiantes</p>  
+                  <div className="classroom-empty-container">
+                    <p className="classroom-empty-container__text">No hay estudiantes</p>  
                 </div>}
             </div>
         }

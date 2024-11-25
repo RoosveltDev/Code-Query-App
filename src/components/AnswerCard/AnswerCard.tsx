@@ -5,12 +5,14 @@ import Badge from "../../atoms/badge/Badge";
 import "./AnswerCard.css";
 import { Answer } from "../../types/answer/answer.types";
 import profile from "../../assets/avatar.svg";
+import { updatedHtmlString } from "../../utils/updateSrc";
 
 export default function AnswerCard({
   body,
   user,
   created_at,
   is_accepted,
+  image,
   onComment,
   className = "",
 }: Answer & { className?: string; onComment?: () => void }) {
@@ -29,9 +31,10 @@ export default function AnswerCard({
           timeAgo={created_at}
         />
         <div className='answer-body'>
+          
           <div
             className='answer-text'
-            dangerouslySetInnerHTML={{ __html: body }}
+            dangerouslySetInnerHTML={{ __html: image?updatedHtmlString(body,image):body }}
           />
         </div>
         <div className='answer-actions'>

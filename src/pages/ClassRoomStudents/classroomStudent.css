@@ -61,8 +61,12 @@
     gap:10px
 }
 .container-card-profile-students{
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
 }
+.classroom-empty-container{}
 @media (max-width: 700px) {
     .classroom-students-container{
         width: 100%;

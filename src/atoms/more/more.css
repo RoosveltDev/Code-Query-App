@@ -8,10 +8,11 @@
 }
 .more-container__select{
     border-radius: 10px;
-    position: absolute;
+    position: fixed;
     padding: 10px;
     width: 110px;
     background-color: #fff;
     z-index: 1;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
 }

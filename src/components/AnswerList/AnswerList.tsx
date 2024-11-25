@@ -25,6 +25,7 @@ export default function AnswerList({
             id={answer.id}
             body={answer.body}
             user={answer.user}
+            image = {answer.image}
             is_accepted={answer.is_accepted}
             classroom_id={answer.classroom_id}
             created_at={answer.created_at}
