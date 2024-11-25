@@ -79,6 +79,7 @@ const ClassRoom: React.FC = () => {
         </div>
       </section>
 
+      <section className='classroom-seccion-body'>
       {data&&data.length>0&&data.map((comment) => (
         <Card key={comment.id} className="classroom-card">
           <div className='classroom-body'>
@@ -111,6 +112,8 @@ const ClassRoom: React.FC = () => {
           </div>
         </Card>
       ))}
+      </section>
+
     </div>
   );
 };
