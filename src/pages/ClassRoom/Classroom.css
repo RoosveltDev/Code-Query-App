@@ -15,10 +15,11 @@
     padding: 1rem;
     background-color: #fff;
     box-shadow: 0 4px 6px #0000001a;
+    width: calc((100% / 3) - 1rem);
     width: 100%;
-    min-width: 250px;
-    max-height: 230px;
+    min-width: 250px; 
     margin-bottom: 1rem;
+    box-sizing: border-box;
 }
 
 .classroom-seccion {
@@ -67,15 +68,15 @@
 
 .card-body {
   margin-top: 1rem;
-  width: 100%;
-  font-size: 12px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2 ;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 5px;
-  box-sizing: border-box;
+    width: 100%;
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 .card-footer {
@@ -101,15 +102,16 @@
 /* Media Queries */
 @media (min-width: 768px) {
   .classroom-container {
-    flex-direction: row;
+    flex-direction: row; 
+    gap: 1rem;
   }
 
   .classroom-card {
-    width: 25%;
+    width: calc((100% / 3) - 1rem);
   }
 
   .classroom-seccion {
-    width: 25%;
+    width: 100%
   }
 
   .classroom-body {
@@ -117,6 +119,6 @@
   }
 
   .card-header {
-    width: 50%;
+    width: 100%;
   }
 }

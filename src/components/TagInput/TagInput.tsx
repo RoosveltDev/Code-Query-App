@@ -127,9 +127,9 @@ const TagInput = ({ tags, onTagsChange, availableTags }: TagInputProps) => {
           onChange={handleInputChange}
           onKeyDown={handleInputKeyDown}
           onFocus={() => setIsOpen(true)}
-          placeholder='Agregar o buscar etiquetas'
+          placeholder='Add or search for tags'
           className='tag-input'
-          aria-label='Agregar o buscar etiquetas'
+          aria-label='Add or search for tags'
           aria-autocomplete='list'
           aria-controls='tag-dropdown'
           aria-expanded={isOpen}
