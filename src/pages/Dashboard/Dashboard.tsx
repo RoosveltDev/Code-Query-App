@@ -124,7 +124,7 @@ const Dashboard = () => {
           htmlFor="classroom-select-box"
           className="dashboard-header-container__label"
         >
-          Selecciona un aula:
+          Choose a classroom:
         </label>
         <select
           className="dashboard-header-container__select"
@@ -198,7 +198,7 @@ const Dashboard = () => {
               S/N
             </h3>
             <h3 className="header-courses-list-dashboard__h3">Name</h3>
-            <h3 className="header-courses-list-dashboard__h3">Desciption</h3>
+            <h3 className="header-courses-list-dashboard__h3">Description</h3>
             <h3 className="header-courses-list-dashboard__h3"></h3>
           </div>
           <div className="courses-list-dashboard__courses">
