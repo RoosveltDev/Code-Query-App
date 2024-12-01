@@ -5,6 +5,7 @@ import { User,UserLoggedStorage,UserLogin } from "../../../types/user.type"
 import { invalidEffect } from "../../../atoms/input/animations/label.animation"
 import makeRequest from "../../../services/api.service"
 import { NavigateFunction } from "react-router-dom"
+import { handleStatus } from "../../../utils/handleStatus"
 export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate:NavigateFunction,storeUser:(dataUser: UserLoggedStorage) => void)=>{
     e.preventDefault()
     const inputs = document.querySelectorAll('.input-container__input') as NodeListOf<HTMLInputElement>
@@ -31,7 +32,14 @@ export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,control
     }
     
 }
-export const handleSubmitRegister=async (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate:NavigateFunction,rolId:number)=>{
+export const handleSubmitRegister=async (
+    e:React.FormEvent<HTMLFormElement>,
+    controlSignal:AbortController,
+    navigate:NavigateFunction,
+    showToast:(message: string, type?: string) => void,
+    removeUser:()=>void,
+    rolId:number
+)=>{
     e.preventDefault()
     const inputs = document.querySelectorAll('.input-container__input') as NodeListOf<HTMLInputElement>
     const email = sanitizeInput(inputs[1].value.trim())
@@ -47,15 +55,20 @@ export const handleSubmitRegister=async (e:React.FormEvent<HTMLFormElement>,cont
         invalidEffect(0,'text',"Please write last name also")
         return
     }
-    const [name,lastName] = fullNameArray
     
+    const {valid,text} = validatePassword(password)
+    if(!valid){
+        invalidEffect(2,'password',text)
+        return
+    }
+    const [name,lastName] = fullNameArray
     const userObject:Omit<User, 'id'> = {email,password,name,last_name:lastName,rol_id:rolId}
     const validatedSchema = validateInputs<Omit<User, 'id'>,UserLogin>( userObject,userSchema)
     if(validatedSchema) {
         const signal = controlSignal.signal
-        await makeRequest(signal,"auth/signUp","POST",userObject,false)
-        /* TODO: HANDLE RESPONSE */
-        navigate('/login')
+        const {status} = await makeRequest(signal,"auth/signUp","POST",userObject,false)
+        if(handleStatus(status,navigate,removeUser,showToast)) navigate('/login')
+        else showToast("Review your data")
     }
     
     
@@ -67,7 +80,7 @@ export const handleLoginCurrying=(storeUser:(dataUser: UserLoggedStorage) => voi
     }
 }
 export const handleRegisterCurrying=(rol_id:number)=>{
-    return (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate?:NavigateFunction)=>{
-        return handleSubmitRegister(e,controlSignal,navigate!,rol_id)
+    return (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate?:NavigateFunction,showToast?:(message: string, type?: string) => void,removeUser?:()=>void)=>{
+        return handleSubmitRegister(e,controlSignal,navigate!,showToast!,removeUser!,rol_id)
     }
 }
