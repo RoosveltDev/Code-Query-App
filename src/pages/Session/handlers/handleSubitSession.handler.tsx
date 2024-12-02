@@ -67,7 +67,12 @@ export const handleSubmitRegister=async (
     if(validatedSchema) {
         const signal = controlSignal.signal
         const {status} = await makeRequest(signal,"auth/signUp","POST",userObject,false)
-        if(handleStatus(status,navigate,removeUser,showToast)) navigate('/login')
+        if(handleStatus(status,navigate,removeUser,showToast)) {
+            inputs.forEach((element)=>{
+                element.value = ""
+            })
+            navigate('/login')
+        }
         else showToast("Review your data")
     }
     
