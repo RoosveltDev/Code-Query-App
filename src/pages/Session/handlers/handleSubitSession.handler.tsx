@@ -76,6 +76,7 @@ export const handleSubmitRegister=async (
             inputs.forEach((element)=>{
                 element.value = ""
             })
+            showToast('Mail sent to successfully','Success')
             navigate('/login')
         }
         else showToast("Review your data")
