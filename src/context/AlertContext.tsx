@@ -7,7 +7,6 @@ export const AlertContextApp=({children}:{children:ReactNode})=>{
    
     const [toast,setToast]=useState({visibility:false,message:'',type:''})
     function showToast(message = "",type = "Error"){
-        console.log('show toast')
         setToast({visibility:true,message:message,type:type})
     }
     function hideToast(){

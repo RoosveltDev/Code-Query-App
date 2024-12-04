@@ -6,7 +6,7 @@ import { invalidEffect } from "../../../atoms/input/animations/label.animation"
 import makeRequest from "../../../services/api.service"
 import { NavigateFunction } from "react-router-dom"
 import { handleStatus } from "../../../utils/handleStatus"
-export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate:NavigateFunction,storeUser:(dataUser: UserLoggedStorage) => void)=>{
+export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate:NavigateFunction,showToast:(message: string, type?: string) => void,storeUser:(dataUser: UserLoggedStorage) => void)=>{
     e.preventDefault()
     const inputs = document.querySelectorAll('.input-container__input') as NodeListOf<HTMLInputElement>
     const email = sanitizeInput(inputs[0].value.trim())
@@ -26,6 +26,10 @@ export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,control
             results.email = email
             storeUser(results)
             navigate('/dashboard')
+        }
+        if(status===401){
+            if(results.message === 'Incorret password') showToast('Review your data')
+            else showToast("Please confirm your email")
         }
        
 
@@ -80,8 +84,8 @@ export const handleSubmitRegister=async (
 }
 
 export const handleLoginCurrying=(storeUser:(dataUser: UserLoggedStorage) => void)=>{
-    return (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate?:NavigateFunction)=>{
-        return handleSubmitLogin(e,controlSignal,navigate!,storeUser)
+    return (e:React.FormEvent<HTMLFormElement>,controlSignal:AbortController,navigate?:NavigateFunction,showToast?:(message: string, type?: string) => void)=>{
+        return handleSubmitLogin(e,controlSignal,navigate!,showToast!,storeUser)
     }
 }
 export const handleRegisterCurrying=(rol_id:number)=>{

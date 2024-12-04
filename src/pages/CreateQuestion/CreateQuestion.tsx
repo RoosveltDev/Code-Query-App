@@ -5,12 +5,13 @@ import Input from "../../atoms/input/Input";
 import RichTextEditor from "../../atoms/richTextEditor/RichTextEditor";
 import TagInput from "../../components/TagInput/TagInput";
 import "./CreateQuestion.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { handleSubmit } from "./handlers/handleCreateQuestion.handler";
 
 const CreateQuestion = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const navigator = useNavigate()
   const [image, setImage] = useState<File | undefined>(undefined);
   const [tags, setTags] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -63,7 +64,8 @@ const CreateQuestion = () => {
               tags: tags.map(tag => availableTags.findIndex(availableTag => availableTag === tag) + 1),
               image,
             },
-            controllerRef
+            controllerRef,
+            navigator
           )
         }
         className='question-form'
