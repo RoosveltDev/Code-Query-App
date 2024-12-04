@@ -31,6 +31,7 @@ export const handleSubmitLogin=async (e:React.FormEvent<HTMLFormElement>,control
             if(results.message === 'Incorret password') showToast('Review your data')
             else showToast("Please confirm your email")
         }
+        if(status===404) showToast('User not found')
        
 
     }
